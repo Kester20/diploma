@@ -1,6 +1,6 @@
 package com.diploma.noormal.service.impl;
 
-import com.diploma.noormal.exceptions.BusinessException;
+import com.diploma.noormal.exception.BusinessException;
 import com.diploma.noormal.model.Users;
 import com.diploma.noormal.service.UserService;
 import org.springframework.stereotype.Service;

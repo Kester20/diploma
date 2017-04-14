@@ -1,6 +1,6 @@
 package com.diploma.noormal.service;
 
-import com.diploma.noormal.exceptions.BusinessException;
+import com.diploma.noormal.exception.BusinessException;
 import com.diploma.noormal.model.Order;
 
 /**

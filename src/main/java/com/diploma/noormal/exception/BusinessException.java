@@ -1,4 +1,4 @@
-package com.diploma.noormal.exceptions;
+package com.diploma.noormal.exception;
 
 /**
  * @author Arsalan
