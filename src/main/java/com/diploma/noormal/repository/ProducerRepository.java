@@ -1,12 +1,12 @@
 package com.diploma.noormal.repository;
 
-import com.diploma.noormal.model.Category;
+import com.diploma.noormal.model.Producer;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author Arsalan. Created on 13.04.2017.
+ * @author Arsalan. Created on 14.04.2017.
  */
 @Repository
-public interface CategoryRepository extends CrudRepository<Category, Long> {
+public interface ProducerRepository extends CrudRepository<Producer, Long>{
 }

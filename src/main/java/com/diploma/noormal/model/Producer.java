@@ -6,10 +6,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * @author Arsalan. Created on 13.04.2017.
+ * @author Arsalan. Created on 14.04.2017.
  */
 @Entity
-public class Category {
+public class Producer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,10 +21,10 @@ public class Category {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Category category = (Category) o;
+        Producer producer = (Producer) o;
 
-        if (!id.equals(category.id)) return false;
-        return name.equals(category.name);
+        if (!id.equals(producer.id)) return false;
+        return name.equals(producer.name);
     }
 
     @Override
@@ -36,7 +36,7 @@ public class Category {
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Producer{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

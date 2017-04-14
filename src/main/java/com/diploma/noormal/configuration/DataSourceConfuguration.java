@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 
 /**
- * @author Arsalan
+ * @author Arsalan. Created on 13.04.2017.
  */
 @Configuration
 @EnableTransactionManagement

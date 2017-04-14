@@ -1,44 +1,48 @@
 package com.diploma.noormal.model;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 /**
- * @author Arsalan. Created on 13.04.2017.
+ * @author Arsalan. Created on 14.04.2017.
  */
 @Entity
-public class Category {
+public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String name;
+
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Category category = (Category) o;
+        Role role = (Role) o;
 
-        if (!id.equals(category.id)) return false;
-        return name.equals(category.name);
+        if (!id.equals(role.id)) return false;
+        return roleType == role.roleType;
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + name.hashCode();
+        result = 31 * result + roleType.hashCode();
         return result;
     }
 
     @Override
     public String toString() {
-        return "Category{" +
+        return "Role{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", roleType=" + roleType +
                 '}';
     }
 
@@ -50,11 +54,11 @@ public class Category {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public RoleType getRoleType() {
+        return roleType;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRoleType(RoleType roleType) {
+        this.roleType = roleType;
     }
 }
