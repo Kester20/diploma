@@ -2,6 +2,7 @@ package com.diploma.noormal.service;
 
 import com.diploma.noormal.model.Laptop;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -15,5 +16,7 @@ public interface LaptopService {
     int getCountOfLaptops();
 
     Laptop getLaptopById(int id);
+
+    Map<String, Object> createCriteria(HttpServletRequest request);
 
 }

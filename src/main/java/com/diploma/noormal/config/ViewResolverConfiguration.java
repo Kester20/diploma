@@ -1,4 +1,4 @@
-package com.diploma.noormal.configuration;
+package com.diploma.noormal.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
