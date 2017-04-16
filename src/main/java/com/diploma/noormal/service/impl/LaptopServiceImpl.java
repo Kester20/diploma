@@ -3,8 +3,9 @@ package com.diploma.noormal.service.impl;
 import com.diploma.noormal.model.Laptop;
 import com.diploma.noormal.model.QLaptop;
 import com.diploma.noormal.repository.LaptopRepository;
+import com.diploma.noormal.service.CategoryService;
 import com.diploma.noormal.service.LaptopService;
-import com.diploma.noormal.util.Constants;
+import com.diploma.noormal.service.ProducerService;
 import com.querydsl.core.types.Predicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,29 +13,22 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.LinkedHashMap;
-import java.util.Map;
+import org.springframework.ui.Model;
 
 import static com.diploma.noormal.util.Constants.ASC;
-import static com.diploma.noormal.util.Constants.CHECKBOX_CATEGORY;
+import static com.diploma.noormal.util.Constants.CATEGORY_LIST;
+import static com.diploma.noormal.util.Constants.COUNT_OF_LAPTOPS;
+import static com.diploma.noormal.util.Constants.COUNT_OF_PAGES;
+import static com.diploma.noormal.util.Constants.CURRENT_PAGE;
 import static com.diploma.noormal.util.Constants.DEFAULT_FIRST_PRICE;
 import static com.diploma.noormal.util.Constants.DEFAULT_PAGE;
 import static com.diploma.noormal.util.Constants.DEFAULT_SECOND_PRICE;
 import static com.diploma.noormal.util.Constants.DEFAULT_SELECT_SHOW;
 import static com.diploma.noormal.util.Constants.DESC;
-import static com.diploma.noormal.util.Constants.FIRST_PRICE;
-import static com.diploma.noormal.util.Constants.LAPTOPS_CATEGORY;
 import static com.diploma.noormal.util.Constants.LAPTOPS_ID;
-import static com.diploma.noormal.util.Constants.LAPTOPS_PRODUCER;
-import static com.diploma.noormal.util.Constants.LIMIT;
-import static com.diploma.noormal.util.Constants.ORDER_BY;
-import static com.diploma.noormal.util.Constants.ORDER_MODE;
-import static com.diploma.noormal.util.Constants.PAGE;
-import static com.diploma.noormal.util.Constants.SECOND_PRICE;
-import static com.diploma.noormal.util.Constants.SELECT_SHOW;
-import static com.diploma.noormal.util.Constants.SELECT_SORT;
+import static com.diploma.noormal.util.Constants.LAPTOP_LIST;
+import static com.diploma.noormal.util.Constants.PRODUCER_LIST;
+import static com.diploma.noormal.util.Constants.SHOW_COUNT;
 
 /**
  * @author Arsalan. Created on 14.04.2017.
@@ -42,57 +36,58 @@ import static com.diploma.noormal.util.Constants.SELECT_SORT;
 @Service
 public class LaptopServiceImpl implements LaptopService {
 
-    @Autowired
     private LaptopRepository laptopRepository;
+    private ProducerService producerService;
+    private CategoryService categoryService;
 
-    @Override
-    public Page<Laptop> getLaptopByCriteria(Map<String, Object> criteria) {
-        String[] producers = (String[]) criteria.get(LAPTOPS_PRODUCER);
-        String[] categories = (String[]) criteria.get(LAPTOPS_CATEGORY);
-        int lowerPriceLimit = (int) criteria.get(FIRST_PRICE);
-        int upperPriceLimit = (int) criteria.get(SECOND_PRICE);
-        String orderBy = (String) criteria.get(ORDER_BY);
-        int showCount = (int) criteria.get(LIMIT);
-        int page = (int) criteria.get(PAGE) - 1;
-        String orderMode = (String) criteria.get(ORDER_MODE);
-
-        QLaptop qLaptop = QLaptop.laptop;
-        Predicate predicateProducer = producers == null ? null : qLaptop.producer.name.in(producers);
-        Predicate predicateCategory = categories == null ? null : qLaptop.category.name.in(categories);
-        Predicate predicate = qLaptop.cost.between(lowerPriceLimit, upperPriceLimit)
-                .and(predicateProducer)
-                .and(predicateCategory);
-
-        Sort sort = orderMode.contains(ASC) ? new Sort(Sort.Direction.ASC, orderBy) : new Sort(Sort.Direction.DESC, orderBy);
-        Pageable pageable = new PageRequest(page, showCount, sort);
-        return laptopRepository.findAll(predicate, pageable);
+    @Autowired
+    public LaptopServiceImpl(LaptopRepository laptopRepository, ProducerService producerService, CategoryService categoryService) {
+        this.laptopRepository = laptopRepository;
+        this.producerService = producerService;
+        this.categoryService = categoryService;
     }
 
     @Override
-    public Map<String, Object> createCriteria(HttpServletRequest request) {
-        Map<String, Object> criteria = new LinkedHashMap<>();
-        String[] producers = request.getParameterValues(Constants.CHECKBOX_PRODUCER);
-        String[] categories = request.getParameterValues(CHECKBOX_CATEGORY);
-        int firstPrice = request.getParameter(FIRST_PRICE) == null ? DEFAULT_FIRST_PRICE : Integer.parseInt(request.getParameter(FIRST_PRICE));
-        int secondPrice = request.getParameter(SECOND_PRICE) == null ? DEFAULT_SECOND_PRICE : Integer.parseInt(request.getParameter(SECOND_PRICE));
-        String orderBy = request.getParameter(SELECT_SORT) == null ? LAPTOPS_ID : request.getParameter(SELECT_SORT);
-        int showCount = request.getParameter(SELECT_SHOW) == null ? DEFAULT_SELECT_SHOW : Integer.parseInt(request.getParameter(SELECT_SHOW));
-        int page = request.getParameter(PAGE) == null ? DEFAULT_PAGE : Integer.parseInt(request.getParameter(PAGE));
-        String orderMode = request.getParameter(ORDER_MODE) == null ? ASC : DESC;
+    public Page<Laptop> findLaptopsByCriteria(String[] producers, String[] categories, Integer firstPrice,
+                                              Integer secondPrice, String orderBy, Integer showCount,
+                                              Integer page, String orderMode, Model model) {
 
-        if (producers != null) {
-            criteria.put(LAPTOPS_PRODUCER, producers);
-        }
-        if (categories != null) {
-            criteria.put(LAPTOPS_CATEGORY, categories);
-        }
+        firstPrice = firstPrice == null ? DEFAULT_FIRST_PRICE : firstPrice;
+        secondPrice = secondPrice == null ? DEFAULT_SECOND_PRICE : secondPrice;
+        orderBy = orderBy == null ? LAPTOPS_ID : orderBy;
+        showCount = showCount == null ? DEFAULT_SELECT_SHOW : showCount;
+        page = page == null ? DEFAULT_PAGE : page;
+        orderMode = orderMode == null ? ASC : DESC;
 
-        criteria.put(FIRST_PRICE, firstPrice);
-        criteria.put(SECOND_PRICE, secondPrice);
-        criteria.put(ORDER_BY, orderBy);
-        criteria.put(LIMIT, showCount);
-        criteria.put(PAGE, page);
-        criteria.put(ORDER_MODE, orderMode);
-        return criteria;
+        Predicate predicate = getPredicate(producers, categories, firstPrice, secondPrice);
+        Pageable pageable = getPageable(orderMode, orderBy, page, showCount);
+
+        Page<Laptop> result = laptopRepository.findAll(predicate, pageable);
+        prepareResponse(model, result, showCount, page);
+        return result;
+    }
+
+    private Predicate getPredicate(String[] producers, String[] categories, Integer firstPrice, Integer secondPrice){
+        QLaptop qLaptop = QLaptop.laptop;
+        Predicate predicateProducer = producers == null ? null : qLaptop.producer.name.in(producers);
+        Predicate predicateCategory = categories == null ? null : qLaptop.category.name.in(categories);
+        return qLaptop.cost.between(firstPrice, secondPrice)
+                .and(predicateProducer)
+                .and(predicateCategory);
+    }
+
+    private Pageable getPageable(String orderMode, String orderBy, Integer page, Integer showCount){
+        Sort sort = orderMode.contains(ASC) ? new Sort(Sort.Direction.ASC, orderBy) : new Sort(Sort.Direction.DESC, orderBy);
+        return new PageRequest(page - 1, showCount, sort);
+    }
+
+    private void prepareResponse(Model model, Page<Laptop> laptops, Integer showCount, Integer currentPage) {
+        model.addAttribute(LAPTOP_LIST, laptops.getContent());
+        model.addAttribute(PRODUCER_LIST, producerService.getAllProducers());
+        model.addAttribute(CATEGORY_LIST, categoryService.getAllCategories());
+        model.addAttribute(COUNT_OF_LAPTOPS, laptops.getTotalElements());
+        model.addAttribute(COUNT_OF_PAGES, Math.ceil(laptops.getTotalElements()/showCount));
+        model.addAttribute(SHOW_COUNT, showCount);
+        model.addAttribute(CURRENT_PAGE, currentPage);
     }
 }

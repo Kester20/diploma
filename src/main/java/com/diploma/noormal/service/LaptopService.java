@@ -2,6 +2,7 @@ package com.diploma.noormal.service;
 
 import com.diploma.noormal.model.Laptop;
 import org.springframework.data.domain.Page;
+import org.springframework.ui.Model;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Map;
@@ -11,8 +12,7 @@ import java.util.Map;
  */
 public interface LaptopService {
 
-    Page<Laptop> getLaptopByCriteria(Map<String, Object> criteria);
-
-    Map<String, Object> createCriteria(HttpServletRequest request);
-
+    Page<Laptop> findLaptopsByCriteria(String[] producers, String[] categories, Integer firstPrice,
+                                       Integer secondPrice, String orderBy, Integer showCount,
+                                       Integer page, String orderMode, Model model);
 }
