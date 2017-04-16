@@ -1,15 +1,17 @@
 package com.diploma.noormal.controller;
 
+import com.diploma.noormal.model.Laptop;
 import com.diploma.noormal.service.CategoryService;
 import com.diploma.noormal.service.LaptopService;
 import com.diploma.noormal.service.ProducerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.Map;
 
 import static com.diploma.noormal.util.Constants.CATEGORY_LIST;
@@ -40,22 +42,23 @@ public class LaptopController {
     }
 
     @RequestMapping(value = "/catalog_servlet", method = RequestMethod.GET)
-    public String showLaptops(HttpServletRequest request, HttpServletResponse response) {
+    public String showLaptops(HttpServletRequest request, Model model) {
         Map<String, Object> criteria = laptopService.createCriteria(request);
         if (criteria != null) {
-            prepareResponse(request, criteria);
+            prepareResponse(model, criteria);
         }
         return "products";
     }
 
-    private void prepareResponse(HttpServletRequest request, Map<String, Object> criteria) {
-        request.setAttribute(LAPTOP_LIST, laptopService.getLaptopByCriteria(criteria));
-        request.setAttribute(PRODUCER_LIST, producerService.getAllProducers());
-        request.setAttribute(CATEGORY_LIST, categoryService.getAllCategories());
-        request.setAttribute(COUNT_OF_LAPTOPS, laptopService.getCountOfLaptops());
-        request.setAttribute(COUNT_OF_PAGES, getCountOfPages(laptopService.getCountOfLaptops(), (int) criteria.get(LIMIT)));
-        request.setAttribute(SHOW_COUNT, criteria.get(LIMIT));
-        request.setAttribute(CURRENT_PAGE, criteria.get(PAGE));
+    private void prepareResponse(Model model, Map<String, Object> criteria) {
+        Page<Laptop> page = laptopService.getLaptopByCriteria(criteria);
+        model.addAttribute(LAPTOP_LIST, page.getContent());
+        model.addAttribute(PRODUCER_LIST, producerService.getAllProducers());
+        model.addAttribute(CATEGORY_LIST, categoryService.getAllCategories());
+        model.addAttribute(COUNT_OF_LAPTOPS, page.getTotalElements());
+        model.addAttribute(COUNT_OF_PAGES, getCountOfPages(page.getTotalElements(), (int) criteria.get(LIMIT)));
+        model.addAttribute(SHOW_COUNT, criteria.get(LIMIT));
+        model.addAttribute(CURRENT_PAGE, criteria.get(PAGE));
     }
 
     private int getCountOfPages(double countOfLaptops, double showCount) {

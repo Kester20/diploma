@@ -60,7 +60,7 @@
                             <div id="slider-range" class="priceSlider"></div>
 
                             <h4 class="labelCriteria"><fmt:message  key="producers" bundle="${bundle}"></fmt:message></h4>
-                            <c:forEach var="producer" items="${requestScope.producerList}">
+                            <c:forEach var="producer" items="${producerList}">
 
                                 <c:forEach var='value' items='${paramValues.checkboxProducer}'>
                                     <c:if test="${value eq producer.name}">
@@ -80,7 +80,7 @@
 
                             <h4 class="labelCriteria"><fmt:message  key="category" bundle="${bundle}"></fmt:message></h4>
 
-                            <c:forEach var="category" items="${requestScope.categoryList}">
+                            <c:forEach var="category" items="${categoryList}">
 
                                 <c:forEach var='value' items='${paramValues.checkboxCategory}'>
                                     <c:if test="${value eq category.name}">
@@ -186,10 +186,10 @@
 
                                 <select form="catalogform" name="selectSort">
 
-                                    <option value="laptops.producer" ${selectedProducer}>
+                                    <option value="producer" ${selectedProducer}>
                                         Name
                                     </option>
-                                    <option value="laptops.cost" ${selectedCost}>
+                                    <option value="cost" ${selectedCost}>
                                         Price
                                     </option>
                                 </select>

@@ -1,9 +1,9 @@
 package com.diploma.noormal.service;
 
 import com.diploma.noormal.model.Laptop;
+import org.springframework.data.domain.Page;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -11,11 +11,7 @@ import java.util.Map;
  */
 public interface LaptopService {
 
-    List<Laptop> getLaptopByCriteria(Map<String, Object> criteria);
-
-    int getCountOfLaptops();
-
-    Laptop getLaptopById(int id);
+    Page<Laptop> getLaptopByCriteria(Map<String, Object> criteria);
 
     Map<String, Object> createCriteria(HttpServletRequest request);
 

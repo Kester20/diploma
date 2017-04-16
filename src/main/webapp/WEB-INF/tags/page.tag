@@ -6,7 +6,7 @@
 
 <c:set var="url" value="${requestScope['javax.servlet.forward.request_uri']}?${pageContext.request.getQueryString()}"/>
 
-<c:if test="${requestScope.countOfLaptops > requestScope.showCount}">
+<c:if test="${countOfLaptops > showCount}">
 
     <ul class="women_pagenation">
         <li>Page:</li>

@@ -49,7 +49,7 @@ public class Constants {
     public static final String LAPTOPS_PRODUCER = "laptops.producer";
     public static final String LAPTOPS_CATEGORY = "laptops.category";
     public static final String LAPTOPS_COST = "laptops.cost";
-    public static final String LAPTOPS_ID = "laptops.id";
+    public static final String LAPTOPS_ID = "id";
     public static final String FIRST_PRICE = "firstPrice";
     public static final String SECOND_PRICE = "secondPrice";
     public static final String ORDER_BY = "orderBy";

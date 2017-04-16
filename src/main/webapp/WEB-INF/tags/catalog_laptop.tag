@@ -7,7 +7,7 @@
 
 <ul>
 
-    <c:forEach var="laptop" items="${requestScope.laptopList}">
+    <c:forEach var="laptop" items="${laptopList}">
 
         <li>
             <a class="cbp-vm-image" href="single.jsp">
