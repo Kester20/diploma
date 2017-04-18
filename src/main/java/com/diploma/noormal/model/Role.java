@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.util.Set;
 
 /**
  * @author Arsalan. Created on 14.04.2017.
@@ -13,12 +15,9 @@ import javax.persistence.Id;
 @Entity
 public class Role {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType;
+    private String name;
+    private Set<User> users;
 
     @Override
     public boolean equals(Object o) {
@@ -28,13 +27,15 @@ public class Role {
         Role role = (Role) o;
 
         if (!id.equals(role.id)) return false;
-        return roleType == role.roleType;
+        if (!name.equals(role.name)) return false;
+        return users.equals(role.users);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
-        result = 31 * result + roleType.hashCode();
+        result = 31 * result + name.hashCode();
+        result = 31 * result + users.hashCode();
         return result;
     }
 
@@ -42,10 +43,13 @@ public class Role {
     public String toString() {
         return "Role{" +
                 "id=" + id +
-                ", roleType=" + roleType +
+                ", name='" + name + '\'' +
+                ", users=" + users +
                 '}';
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     public Long getId() {
         return id;
     }
@@ -54,11 +58,20 @@ public class Role {
         this.id = id;
     }
 
-    public RoleType getRoleType() {
-        return roleType;
+    public String getName() {
+        return name;
     }
 
-    public void setRoleType(RoleType roleType) {
-        this.roleType = roleType;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @ManyToMany(mappedBy = "roles")
+    public Set<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 }

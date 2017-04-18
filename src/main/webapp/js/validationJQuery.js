@@ -7,22 +7,16 @@ function invokeAllFunctions() {
     var validAllFields = true;
     var callbacks = [
         function() {
-            return isNotEmptyInput(document.registerForm.firstName);
-        },
-        function() {
-            return isNotEmptyInput(document.registerForm.lastName);
-        },
-        function() {
-            return checkLengthPassword(document.registerForm.pass);
-        },
-        function() {
             return validateEmail(document.registerForm.email);
+                },
+        function() {
+            return isNotEmptyInput(document.registerForm.username);
         },
         function() {
-            return validatePhone(document.registerForm.mobileNumber);
+            return checkLengthPassword(document.registerForm.password);
         },
         function() {
-            return checkStringEquals(document.registerForm.pass, document.registerForm.pass2);
+            return checkStringEquals(document.registerForm.password, document.registerForm.passwordConfirm);
         }
     ];
 

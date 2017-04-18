@@ -16,18 +16,11 @@ import java.util.Date;
 @Entity
 public class Order {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @Enumerated(EnumType.STRING)
     private OrderStatusType orderStatusType;
     private String specificationStatus;
     private Date date;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private Users user;
+    private User user;
 
     @Override
     public boolean equals(Object o) {
@@ -64,6 +57,8 @@ public class Order {
                 '}';
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -72,6 +67,7 @@ public class Order {
         this.id = id;
     }
 
+    @Enumerated(EnumType.STRING)
     public OrderStatusType getOrderStatusType() {
         return orderStatusType;
     }
@@ -96,11 +92,13 @@ public class Order {
         this.date = date;
     }
 
-    public Users getUser() {
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    public User getUser() {
         return user;
     }
 
-    public void setUser(Users user) {
+    public void setUser(User user) {
         this.user = user;
     }
 }

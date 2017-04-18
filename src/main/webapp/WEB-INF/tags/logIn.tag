@@ -6,11 +6,11 @@
 <fmt:setBundle var="bundle" basename="content" />
 
 <c:choose>
-    <c:when test="${sessionScope.user == null}">
+    <c:when test="${pageContext.request.userPrincipal.name == null}">
 
        <ul>
-            <li><a href="<c:url value='account.jsp' />"><span class="glyphicon glyphicon-user"> </span><fmt:message  key="login" bundle="${bundle}"></fmt:message></a></li>
-            <li><a href="<c:url value='registration_servlet' />"><span class="glyphicon glyphicon-lock"> </span><fmt:message  key="create_an_account" bundle="${bundle}"></fmt:message></a></li>
+            <li><a href="<c:url value='${contextPath}/account' />"><span class="glyphicon glyphicon-user"> </span><fmt:message  key="login" bundle="${bundle}"></fmt:message></a></li>
+            <li><a href="<c:url value='${contextPath}/registration' />"><span class="glyphicon glyphicon-lock"> </span><fmt:message  key="create_an_account" bundle="${bundle}"></fmt:message></a></li>
        </ul>
 
     </c:when>
@@ -19,10 +19,14 @@
 
     <c:otherwise>
 
+        <form id="logoutForm" method="POST" action="${contextPath}/logout">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+        </form>
+
        <ul>
             <li><img class="avatar" src="${userAvatar}" /></li>
-            <li><a>${user.firstName}</a></li>
-            <li><a href="<c:url value='logout_servlet' />"><span class="glyphicon glyphicon-user"> </span>Log out</a></li>
+            <li><a>${pageContext.request.userPrincipal.name}</a></li>
+            <li><a onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-user"> </span>Logout</a></li>
 
        </ul>
 

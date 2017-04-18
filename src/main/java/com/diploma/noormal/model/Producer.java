@@ -11,8 +11,6 @@ import javax.persistence.Id;
 @Entity
 public class Producer {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
@@ -42,6 +40,8 @@ public class Producer {
                 '}';
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }

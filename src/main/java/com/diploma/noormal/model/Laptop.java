@@ -14,20 +14,12 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Laptop {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "producer")
     private Producer producer;
+    private Category category;
     private String model;
     private int cost;
     private String image;
-
-    @ManyToOne
-    @JoinColumn(name = "category")
-    private Category category;
 
     @Override
     public boolean equals(Object o) {
@@ -67,6 +59,8 @@ public class Laptop {
                 '}';
     }
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
         return id;
     }
@@ -75,12 +69,24 @@ public class Laptop {
         this.id = id;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "producer")
     public Producer getProducer() {
         return producer;
     }
 
     public void setProducer(Producer producer) {
         this.producer = producer;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "category")
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getModel() {
@@ -105,13 +111,5 @@ public class Laptop {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
     }
 }

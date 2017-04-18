@@ -16,7 +16,7 @@
 
     <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <link href="css/flexslider.css" rel="stylesheet"  type="text/css" media="screen" />
 
     <script src="js/jquery.min.js"></script>
     <script type="application/x-javascript" src="js/addHandlerLoad.js"></script>
@@ -59,17 +59,18 @@
                 <div class="col-md-6 login-right wow fadeInRight" data-wow-delay="0.4s">
                     <h3>REGISTERED CUSTOMERS</h3>
                     <p>If you have an account with us, please log in.</p>
-                    <form name="logInForm" method="post" action="<c:url value='login_servlet' />" onsubmit="">
+                    <form name="logInForm" method="POST" action="${contextPath}/account">
                     <div>
-                        <span>Email Address<label>*</label></span>
-                        <input  type="text" name="email">
+                        <span>User Name</span>
+                        <input  type="text" name="username">
                     </div>
                     <div>
-                        <span>Password<label>*</label></span>
+                        <span>Password</span>
                         <input  type="password" name="password">
 
                     </div>
-                    <label class="errorInput">${wrongEmailOrPassword}</label><br><br>
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                    <label class="errorInput"><span>${error}</span></label><br><br>
                     <a class="forgot" href="#">Forgot Your Password?</a>
                     <input type="submit" value="Login">
                 </form>

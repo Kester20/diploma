@@ -1,9 +1,15 @@
 package com.diploma.noormal.service.impl;
 
-import com.diploma.noormal.exception.BusinessException;
-import com.diploma.noormal.model.Users;
+import com.diploma.noormal.model.Role;
+import com.diploma.noormal.model.User;
+import com.diploma.noormal.repository.RoleRepository;
+import com.diploma.noormal.repository.UserRepository;
 import com.diploma.noormal.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author Arsalan. Created on 14.04.2017.
@@ -11,43 +17,27 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    @Override
-    public void createUser(Users user) throws BusinessException {
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
+    @Autowired
+    public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
+                           BCryptPasswordEncoder bCryptPasswordEncoder) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
     }
 
     @Override
-    public boolean checkIfExistUser(String email) {
-        return false;
+    public void save(User user) {
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        user.setRoles((List<Role>) roleRepository.findAll());
+        userRepository.save(user);
     }
 
     @Override
-    public boolean logInUser(String email, String password) {
-        return false;
-    }
-
-    @Override
-    public Users getUserByEmailAndPassword(String email, String password) {
-        return null;
-    }
-
-    @Override
-    public void incrementUserFailedLogin(String email) {
-
-    }
-
-    @Override
-    public void clearUserFailedLogin(String email) {
-
-    }
-
-    @Override
-    public boolean checkUserHasBan(String email) {
-        return false;
-    }
-
-    @Override
-    public void clearBanAfterHalfAnHour(String email) {
-
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 }
