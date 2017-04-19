@@ -30,7 +30,7 @@ public class LaptopController {
         this.laptopService = laptopService;
     }
 
-    @RequestMapping(value = "/catalog_servlet", method = RequestMethod.GET)
+    @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String showLaptops(@RequestParam(value = CHECKBOX_PRODUCER, required = false) String[] producers,
                               @RequestParam(value = CHECKBOX_CATEGORY, required = false) String[] categories,
                               @RequestParam(value = FIRST_PRICE, required = false) Integer firstPrice,

@@ -16,6 +16,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  */
 @Service
 public class SecurityServiceImpl implements SecurityService {
+
     @Autowired
     private AuthenticationManager authenticationManager;
 
@@ -30,7 +31,6 @@ public class SecurityServiceImpl implements SecurityService {
         if (userDetails instanceof UserDetails) {
             return ((UserDetails)userDetails).getUsername();
         }
-
         return null;
     }
 

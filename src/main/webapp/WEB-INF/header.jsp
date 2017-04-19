@@ -89,7 +89,7 @@
                                             <ul class="multi-column-dropdown">
                                                 <h6>NEW IN</h6>
                                                 <li>
-                                                    <a href="<c:url value='catalog_servlet' />">Laptops</a>
+                                                    <a href="<c:url value='${contextPath}/catalog' />">Laptops</a>
                                                 </li>
                                                 <li>
                                                     <a href="products.jsp">New In Bags</a>
