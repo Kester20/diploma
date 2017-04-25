@@ -54,8 +54,23 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public void updateNumberOfProductsInCart(long idProduct, int numberOfProducts) {
+        Map<Product, Integer> productsInCart = cart.getProducts();
+        for (Product product : productsInCart.keySet()) {
+            if (product.getId() == idProduct) {
+                productsInCart.put(product, numberOfProducts);
+            }
+        }
+    }
+
+    @Override
     public int getNumberOfProducts() {
-        return cart.getProducts().size();
+        int result = 0;
+        Map<Product, Integer> productsInCart = cart.getProducts();
+        for (Integer values: productsInCart.values()) {
+            result += values;
+        }
+        return result;
     }
 
     private int getCountOfProductInCart(Product product){

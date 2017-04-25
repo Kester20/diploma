@@ -1,5 +1,6 @@
 package com.diploma.noormal.controller;
 
+import com.diploma.noormal.model.Product;
 import com.diploma.noormal.service.CartService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,22 @@ public class CartController {
         if (cartService != null) {
             cartService.removeFromCart(idProduct);
         }
+    }
+
+    @RequestMapping(value = "/amount/update", produces = "application/json")
+    @ResponseBody
+    public String updateAmount(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct,
+                               @RequestParam(value = "value") int numberOfProducts) {
+        HttpSession session = request.getSession();
+        CartService cartService = (CartService) session.getAttribute("cartServiceImpl");
+        if (cartService != null) {
+            cartService.updateNumberOfProductsInCart(idProduct, numberOfProducts);
+        }
+
+        JSONObject json = new JSONObject();
+        json.put("amount", cartService.getAmount());
+        json.put("size", cartService.getNumberOfProducts());
+        return json.toString();
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)

@@ -23,12 +23,13 @@ function deleteProductFromCart(id){
 function setKeyValue(id, value){
   $.ajax({
       type: "GET",
-      url: "get_amount_servlet",
-      dataType: "text",
-      data: "idLaptop=" + id + "&value=" + value,
+      url: "/cart/amount/update",
+      dataType: "json",
+      data: "idProduct=" + id + "&value=" + value,
       success: function(result) {
-          $("#total").html(result);
-          $("#total_head").html(result);
+          $("#total").html(result.amount);
+          $("#total_head").html(result.amount);
+          $("#size_head").html(result.size);
       }
   });
 }

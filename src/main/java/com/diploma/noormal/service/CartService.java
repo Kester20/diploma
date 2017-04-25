@@ -12,4 +12,6 @@ public interface CartService {
     int getAmount();
 
     int getNumberOfProducts();
+
+    void updateNumberOfProductsInCart(long idProduct, int numberOfProducts);
 }
