@@ -40,7 +40,7 @@
 
         <jsp:include page="header.jsp"></jsp:include>
 
-        <form id="catalogform" action="<c:url value='catalog_servlet' />" method="get"></form>
+        <form id="catalogform" action="<c:url value='${contextPath}/catalog' />" method="get"></form>
 
         <!-- content-section-starts -->
         <div class="container">
@@ -78,25 +78,7 @@
                                 <c:set var="checkedProducer" value=""/>
                             </c:forEach>
 
-                            <h4 class="labelCriteria"><fmt:message  key="category" bundle="${bundle}"></fmt:message></h4>
 
-                            <c:forEach var="category" items="${categoryList}">
-
-                                <c:forEach var='value' items='${paramValues.checkboxCategory}'>
-                                    <c:if test="${value eq category.name}">
-                                        <c:set var="checkedCategory" value="checked"/>
-                                    </c:if>
-                                </c:forEach>
-
-                                <li>
-                                    <a>
-                                        <label class="labelCriteriaValues">
-                                            <input type="checkbox" name="checkboxCategory" value="${category.name}" form="catalogform" ${checkedCategory}/>${category.name}
-                                        </label>
-                                    </a>
-                                </li>
-                                <c:set var="checkedCategory" value=""/>
-                            </c:forEach>
 
                         </ul>
 

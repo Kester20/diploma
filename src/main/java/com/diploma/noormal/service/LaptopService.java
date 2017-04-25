@@ -12,7 +12,9 @@ import java.util.Map;
  */
 public interface LaptopService {
 
-    Page<Laptop> findLaptopsByCriteria(String[] producers, String[] categories, Integer firstPrice,
+    Laptop findOne(long idLaptop);
+
+    Page<Laptop> findLaptopsByCriteria(String[] producers, Integer firstPrice,
                                        Integer secondPrice, String orderBy, Integer showCount,
                                        Integer page, String orderMode, Model model);
 }

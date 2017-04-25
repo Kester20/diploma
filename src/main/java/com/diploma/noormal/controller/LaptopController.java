@@ -32,14 +32,13 @@ public class LaptopController {
 
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
     public String showLaptops(@RequestParam(value = CHECKBOX_PRODUCER, required = false) String[] producers,
-                              @RequestParam(value = CHECKBOX_CATEGORY, required = false) String[] categories,
                               @RequestParam(value = FIRST_PRICE, required = false) Integer firstPrice,
                               @RequestParam(value = SECOND_PRICE, required = false) Integer secondPrice,
                               @RequestParam(value = SELECT_SORT, required = false) String orderBy,
                               @RequestParam(value = SELECT_SHOW, required = false) Integer showCount,
                               @RequestParam(value = PAGE, required = false) Integer page,
                               @RequestParam(value = ORDER_MODE, required = false) String orderMode, Model model) {
-        laptopService.findLaptopsByCriteria(producers, categories, firstPrice,
+        laptopService.findLaptopsByCriteria(producers, firstPrice,
                 secondPrice, orderBy, showCount, page, orderMode, model);
         return "products";
     }

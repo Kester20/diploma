@@ -3,7 +3,6 @@ package com.diploma.noormal.service.impl;
 import com.diploma.noormal.model.Laptop;
 import com.diploma.noormal.model.QLaptop;
 import com.diploma.noormal.repository.LaptopRepository;
-import com.diploma.noormal.service.CategoryService;
 import com.diploma.noormal.service.LaptopService;
 import com.diploma.noormal.service.ProducerService;
 import com.querydsl.core.types.Predicate;
@@ -38,17 +37,20 @@ public class LaptopServiceImpl implements LaptopService {
 
     private LaptopRepository laptopRepository;
     private ProducerService producerService;
-    private CategoryService categoryService;
 
     @Autowired
-    public LaptopServiceImpl(LaptopRepository laptopRepository, ProducerService producerService, CategoryService categoryService) {
+    public LaptopServiceImpl(LaptopRepository laptopRepository, ProducerService producerService) {
         this.laptopRepository = laptopRepository;
         this.producerService = producerService;
-        this.categoryService = categoryService;
     }
 
     @Override
-    public Page<Laptop> findLaptopsByCriteria(String[] producers, String[] categories, Integer firstPrice,
+    public Laptop findOne(long idLaptop){
+        return laptopRepository.findOne(idLaptop);
+    }
+
+    @Override
+    public Page<Laptop> findLaptopsByCriteria(String[] producers, Integer firstPrice,
                                               Integer secondPrice, String orderBy, Integer showCount,
                                               Integer page, String orderMode, Model model) {
 
@@ -59,7 +61,7 @@ public class LaptopServiceImpl implements LaptopService {
         page = page == null ? DEFAULT_PAGE : page;
         orderMode = orderMode == null ? ASC : DESC;
 
-        Predicate predicate = getPredicate(producers, categories, firstPrice, secondPrice);
+        Predicate predicate = getPredicate(producers,firstPrice, secondPrice);
         Pageable pageable = getPageable(orderMode, orderBy, page, showCount);
 
         Page<Laptop> result = laptopRepository.findAll(predicate, pageable);
@@ -67,13 +69,11 @@ public class LaptopServiceImpl implements LaptopService {
         return result;
     }
 
-    private Predicate getPredicate(String[] producers, String[] categories, Integer firstPrice, Integer secondPrice){
+    private Predicate getPredicate(String[] producers, Integer firstPrice, Integer secondPrice){
         QLaptop qLaptop = QLaptop.laptop;
         Predicate predicateProducer = producers == null ? null : qLaptop.producer.name.in(producers);
-        Predicate predicateCategory = categories == null ? null : qLaptop.category.name.in(categories);
         return qLaptop.cost.between(firstPrice, secondPrice)
-                .and(predicateProducer)
-                .and(predicateCategory);
+                .and(predicateProducer);
     }
 
     private Pageable getPageable(String orderMode, String orderBy, Integer page, Integer showCount){
@@ -84,7 +84,6 @@ public class LaptopServiceImpl implements LaptopService {
     private void prepareResponse(Model model, Page<Laptop> laptops, Integer showCount, Integer currentPage) {
         model.addAttribute(LAPTOP_LIST, laptops.getContent());
         model.addAttribute(PRODUCER_LIST, producerService.getAllProducers());
-        model.addAttribute(CATEGORY_LIST, categoryService.getAllCategories());
         model.addAttribute(COUNT_OF_LAPTOPS, laptops.getTotalElements());
         model.addAttribute(COUNT_OF_PAGES, Math.ceil(laptops.getTotalElements()/showCount));
         model.addAttribute(SHOW_COUNT, showCount);

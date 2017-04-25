@@ -1,7 +1,7 @@
 function addToCart(id) {
     $.ajax({
         type: "GET",
-        url: "cart/add/*",
+        url: "/cart/add",
         dataType: "json",
         data: "idLaptop=" + id,
         success: function(result) {
@@ -14,7 +14,7 @@ function addToCart(id) {
 function deleteLaptopFromCart(id){
   $.ajax({
       type: "GET",
-      url: "delete_from_cart_servlet",
+      url: "/cart/delete",
       dataType: "text",
       data: "idLaptop=" + id
   });

@@ -10,17 +10,17 @@
 
     <title>Eshop a Flat E-Commerce Bootstrap Responsive Website Template | Contact :: w3layouts</title>
     
-    <link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
-    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
-    <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <link rel="stylesheet" href="/css/flexslider.css" type="text/css" media="screen" />
+    <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <script type="application/x-javascript" src="js/addHandlerLoad.js"></script>
-    <script type="text/javascript" src="js/bootstrap-3.1.1.min.js"></script>
-    <script src="js/jquery.min.js"></script>    
-    <script src="js/simpleCart.min.js"></script>
+    <script type="application/x-javascript" src="/js/addHandlerLoad.js"></script>
+    <script type="text/javascript" src="/js/bootstrap-3.1.1.min.js"></script>
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/simpleCart.min.js"></script>
     
 </head>
 

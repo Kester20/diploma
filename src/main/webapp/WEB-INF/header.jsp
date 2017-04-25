@@ -17,8 +17,8 @@
 <fmt:setLocale value="${language}"/>
 <fmt:setBundle var="bundle" basename="content"/>
 
-<script src="js/cartOperation.js"></script>
-<script src="js/changeLanguage.js"></script>
+<script src="/js/cartOperation.js"></script>
+<script src="/js/changeLanguage.js"></script>
 
 <fmt:message var="wordLang" key="wordLang"></fmt:message>
 
@@ -31,13 +31,13 @@
             </div>
             <div class="header-right">
                 <div class="cart box_1">
-                    <a href="checkout.jsp">
-                        <h3>$<span id="total_head">${sessionScope.cart.getAmount()}
+                    <a href="cart/checkout">
+                        <h3>$<span id="total_head">${sessionScope.cartServiceImpl.getAmount()}
                             </span>
-                            (<span id="size_head">${sessionScope.cart.getNumberOfProducts()}</span>)<img src="images/bag.png" alt=""></h3>
+                            (<span id="size_head">${sessionScope.cartServiceImpl.getNumberOfProducts()}</span>)<img src="/images/bag.png" alt=""></h3>
                         </a>
 
-                        <c:if test="${(not empty sessionScope.cart) || (sessionScope.cart.getNumberOfProducts() > 0)}">
+                        <c:if test="${(sessionScope.cartServiceImpl.getNumberOfProducts() > 0)}">
                             <p>
                                 <a href="" onclick="clearCart();">Empty cart</a>
                             </p>
@@ -66,7 +66,7 @@
                         </button>
                         <div class="logo">
                             <h1>
-                                <a href="index.jsp">
+                                <a href="<c:url value='${contextPath}/index' />">
                                     <span>E</span>
                                     -Shop</a>
                             </h1>
@@ -77,7 +77,7 @@
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
                             <li>
-                                <a href="index.jsp"><fmt:message  key="home" bundle="${bundle}"></fmt:message></a>
+                                <a href="<c:url value='${contextPath}/index' />"><fmt:message  key="home" bundle="${bundle}"></fmt:message></a>
                             </li>
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message  key="catalog" bundle="${bundle}"></fmt:message>

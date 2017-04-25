@@ -10,7 +10,7 @@
 <fmt:setBundle var="b" basename="content"/>
 
 <c:choose>
-    <c:when test="${(empty sessionScope.cart) || (sessionScope.cart.getNumberOfProducts() == 0)}">
+    <c:when test="${(empty sessionScope.cart) || (sessionScope.cartServiceImpl.getNumberOfProducts() == 0)}">
         <h2>${title}(EMPTY)</h2>
     </c:when>
 
@@ -29,7 +29,7 @@
                 </c:if>
             </tr>
 
-            <c:forEach var="cartMap" items="${sessionScope.cart.cart}">
+            <c:forEach var="cartMap" items="${sessionScope.cartServiceImpl.cart.products}">
                 <tr>
                     <td>
                         <img src="${cartMap.key.image}" class="cart_image" alt=""/>
@@ -67,7 +67,7 @@
 
         </table>
 
-        <span class="spanTotalCart">Total: $<span id="total">${sessionScope.cart.getAmount()}</span>
+        <span class="spanTotalCart">Total: $<span id="total">${sessionScope.cartServiceImpl.getAmount()}</span>
         </span>
         <br>
         <br>
