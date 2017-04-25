@@ -3,7 +3,7 @@ function addToCart(id) {
         type: "GET",
         url: "/cart/add",
         dataType: "json",
-        data: "idLaptop=" + id,
+        data: "idProduct=" + id,
         success: function(result) {
             $("#total_head").html(result.amount);
             $("#size_head").html(result.size);
@@ -11,12 +11,12 @@ function addToCart(id) {
     });
 }
 
-function deleteLaptopFromCart(id){
+function deleteProductFromCart(id){
   $.ajax({
       type: "GET",
       url: "/cart/delete",
       dataType: "text",
-      data: "idLaptop=" + id
+      data: "idProduct=" + id
   });
 }
 

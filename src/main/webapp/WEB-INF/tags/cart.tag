@@ -57,7 +57,7 @@
 
                     <c:if test="${!blockUser eq true}">
                         <td>
-                            <a class="deleteIcon" href="" onclick="deleteLaptopFromCart(${cartMap.key.id})">X</a>
+                            <a class="deleteIcon" href="" onclick="deleteProductFromCart(${cartMap.key.id})">X</a>
                         </td>
                     </c:if>
 

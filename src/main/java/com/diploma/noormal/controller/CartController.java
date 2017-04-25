@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import static com.diploma.noormal.util.Constants.ID_LAPTOP;
+import static com.diploma.noormal.util.Constants.ID_PRODUCT;
 
 /**
  * @author Arsalan. Created on 22.04.2017.
@@ -32,7 +32,7 @@ public class CartController {
 
     @RequestMapping(value = "/add", produces = "application/json")
     @ResponseBody
-    public String addToCart(HttpServletRequest request, @RequestParam(value = ID_LAPTOP) long idProduct) {
+    public String addToCart(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct) {
         HttpSession session = request.getSession();
         CartService cartService = (CartService) session.getAttribute("cartServiceImpl");
         if (idProduct != 0) {
@@ -46,7 +46,7 @@ public class CartController {
     }
 
     @RequestMapping(value = "/delete")
-    public void deleteFromCart(HttpServletRequest request, @RequestParam(value = ID_LAPTOP) long idProduct) {
+    public void deleteFromCart(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct) {
         HttpSession session = request.getSession();
         CartService cartService = (CartService) session.getAttribute("cartServiceImpl");
         if (cartService != null) {

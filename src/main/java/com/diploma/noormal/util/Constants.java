@@ -34,7 +34,7 @@ public class Constants {
     public static final String FORM_BEAN = "formBean";
     public static final String ERRORS = "errors";
     public static final String USER_SERVICE = "userService";
-    public static final String LAPTOP_SERVICE = "laptopService";
+    public static final String PRODUCT_SERVICE = "productService";
     public static final String FORM_BEAN_SERVICE = "formBeanService";
     public static final String ORDER_SERVICE = "orderService";
     public static final String AVATARS_PATH = "avatars";
@@ -46,9 +46,8 @@ public class Constants {
     public static final String LAPTOP_LIST = "laptopList";
     public static final String PRODUCER_LIST = "producerList";
     public static final String CATEGORY_LIST = "categoryList";
-    public static final String LAPTOPS_PRODUCER = "laptops.producer";
-    public static final String LAPTOPS_CATEGORY = "laptops.category";
-    public static final String LAPTOPS_COST = "laptops.cost";
+    public static final String PRODUCT_PRODUCER = "product.producer";
+    public static final String PRODUCT_COST = "product.cost";
     public static final String LAPTOPS_ID = "id";
     public static final String FIRST_PRICE = "firstPrice";
     public static final String SECOND_PRICE = "secondPrice";
@@ -76,7 +75,7 @@ public class Constants {
     public static final String DESC = " DESC";
     public static final String ASC = " ASC";
     public static final String CART = "cart";
-    public static final String ID_LAPTOP = "idLaptop";
+    public static final String ID_PRODUCT = "idProduct";
     public static final String VALUE = "value";
     public static final String REDIRECT_PAGE = "redirectPage";
     public static final String CREATE_ORDER_JSP = "createOrder.jsp";

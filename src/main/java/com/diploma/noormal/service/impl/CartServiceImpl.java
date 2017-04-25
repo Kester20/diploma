@@ -3,7 +3,7 @@ package com.diploma.noormal.service.impl;
 import com.diploma.noormal.model.Cart;
 import com.diploma.noormal.model.Product;
 import com.diploma.noormal.service.CartService;
-import com.diploma.noormal.service.LaptopService;
+import com.diploma.noormal.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -17,18 +17,18 @@ import java.util.Map;
 @Scope(value = "session")
 public class CartServiceImpl implements CartService {
 
-    private LaptopService laptopService;
+    private ProductService productService;
     private Cart cart;
 
     @Autowired
-    public CartServiceImpl(LaptopService laptopService, Cart cart) {
-        this.laptopService = laptopService;
+    public CartServiceImpl(ProductService productService, Cart cart) {
+        this.productService = productService;
         this.cart = cart;
     }
 
     @Override
     public void addToCart(long idProduct) {
-        Product product = laptopService.findOne(idProduct);
+        Product product = productService.findOne(idProduct);
         int countOfProduct = getCountOfProductInCart(product);
         cart.getProducts().put(product, countOfProduct);
     }

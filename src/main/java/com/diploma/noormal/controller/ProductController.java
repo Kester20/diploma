@@ -1,6 +1,6 @@
 package com.diploma.noormal.controller;
 
-import com.diploma.noormal.service.LaptopService;
+import com.diploma.noormal.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import static com.diploma.noormal.util.Constants.CHECKBOX_CATEGORY;
 import static com.diploma.noormal.util.Constants.CHECKBOX_PRODUCER;
 import static com.diploma.noormal.util.Constants.FIRST_PRICE;
 import static com.diploma.noormal.util.Constants.ORDER_MODE;
@@ -21,13 +20,13 @@ import static com.diploma.noormal.util.Constants.SELECT_SORT;
  * @author Arsalan. Created on 14.04.2017.
  */
 @Controller
-public class LaptopController {
+public class ProductController {
 
-    private LaptopService laptopService;
+    private ProductService productService;
 
     @Autowired
-    public LaptopController(LaptopService laptopService) {
-        this.laptopService = laptopService;
+    public ProductController(ProductService productService) {
+        this.productService = productService;
     }
 
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
@@ -38,7 +37,7 @@ public class LaptopController {
                               @RequestParam(value = SELECT_SHOW, required = false) Integer showCount,
                               @RequestParam(value = PAGE, required = false) Integer page,
                               @RequestParam(value = ORDER_MODE, required = false) String orderMode, Model model) {
-        laptopService.findLaptopsByCriteria(producers, firstPrice,
+        productService.findLaptopsByCriteria(producers, firstPrice,
                 secondPrice, orderBy, showCount, page, orderMode, model);
         return "products";
     }
