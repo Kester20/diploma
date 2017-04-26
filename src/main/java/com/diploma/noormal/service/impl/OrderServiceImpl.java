@@ -1,6 +1,5 @@
 package com.diploma.noormal.service.impl;
 
-import com.diploma.noormal.exception.BusinessException;
 import com.diploma.noormal.model.Order;
 import com.diploma.noormal.service.OrderService;
 import org.springframework.stereotype.Service;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class OrderServiceImpl implements OrderService {
 
     @Override
-    public void createOrder(Order order) throws BusinessException {
+    public void createOrder(Order order) {
 
     }
 

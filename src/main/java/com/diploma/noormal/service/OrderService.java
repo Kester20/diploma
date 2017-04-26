@@ -1,6 +1,5 @@
 package com.diploma.noormal.service;
 
-import com.diploma.noormal.exception.BusinessException;
 import com.diploma.noormal.model.Order;
 
 /**
@@ -8,7 +7,7 @@ import com.diploma.noormal.model.Order;
  */
 public interface OrderService {
 
-    void createOrder(Order order) throws BusinessException;
+    void createOrder(Order order);
 
     int getLastOrderId();
 }
