@@ -1,6 +1,5 @@
 package com.diploma.noormal.controller;
 
-import com.diploma.noormal.model.Product;
 import com.diploma.noormal.service.CartService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;

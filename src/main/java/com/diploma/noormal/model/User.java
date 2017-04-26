@@ -7,11 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
-import java.sql.Time;
 import java.util.List;
-import java.util.Set;
 
 /**
  * @author Arsalan. Created on 14.04.2017.

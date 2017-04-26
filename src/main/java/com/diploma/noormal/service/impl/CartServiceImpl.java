@@ -67,15 +67,15 @@ public class CartServiceImpl implements CartService {
     public int getNumberOfProducts() {
         int result = 0;
         Map<Product, Integer> productsInCart = cart.getProducts();
-        for (Integer values: productsInCart.values()) {
+        for (Integer values : productsInCart.values()) {
             result += values;
         }
         return result;
     }
 
-    private int getCountOfProductInCart(Product product){
+    private int getCountOfProductInCart(Product product) {
         Map<Product, Integer> productsInCart = cart.getProducts();
-        return productsInCart.get(product)  == null ? 1 : productsInCart.get(product);
+        return productsInCart.get(product) == null ? 1 : productsInCart.get(product);
     }
 
     public Cart getCart() {

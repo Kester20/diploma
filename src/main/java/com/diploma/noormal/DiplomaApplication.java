@@ -5,9 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 
-import java.util.HashMap;
-import java.util.Map;
-
 
 @SpringBootApplication
 public class DiplomaApplication extends SpringBootServletInitializer {

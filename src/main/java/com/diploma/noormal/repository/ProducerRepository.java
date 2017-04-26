@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * @author Arsalan. Created on 14.04.2017.
  */
 @Repository
-public interface ProducerRepository extends CrudRepository<Producer, Long>{
+public interface ProducerRepository extends CrudRepository<Producer, Long> {
 }
