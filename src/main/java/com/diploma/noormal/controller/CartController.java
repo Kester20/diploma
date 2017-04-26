@@ -1,7 +1,8 @@
 package com.diploma.noormal.controller;
 
+import com.diploma.noormal.exception.ProductNotFoundException;
 import com.diploma.noormal.service.CartService;
-import org.json.JSONObject;
+import com.diploma.noormal.util.JsonMaker;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.HashMap;
+import java.util.Map;
 
-import static com.diploma.noormal.util.Constants.ID_PRODUCT;
+import static com.diploma.noormal.util.Constants.ControllerConstants.AMOUNT;
+import static com.diploma.noormal.util.Constants.ControllerConstants.CART_SERVICE_IMPL;
+import static com.diploma.noormal.util.Constants.ControllerConstants.ID_PRODUCT;
+import static com.diploma.noormal.util.Constants.ControllerConstants.PRODUCT_NOT_FOUND;
+import static com.diploma.noormal.util.Constants.ControllerConstants.SIZE;
+import static com.diploma.noormal.util.Constants.ControllerConstants.VALUE;
 
 /**
  * @author Arsalan. Created on 22.04.2017.
@@ -34,44 +42,44 @@ public class CartController {
     @ResponseBody
     public String addToCart(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct) {
         HttpSession session = request.getSession();
-        CartService cartService = (CartService) session.getAttribute("cartServiceImpl");
-        if (idProduct != 0) {
-            cartService.addToCart(idProduct);
+        CartService cartService = (CartService) session.getAttribute(CART_SERVICE_IMPL);
+        boolean added = cartService.addToCart(idProduct);
+        if (!added) {
+            throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
         }
-
-        JSONObject json = new JSONObject();
-        json.put("amount", cartService.getAmount());
-        json.put("size", cartService.getNumberOfProducts());
-        return json.toString();
-    }
-
-    @RequestMapping(value = "/delete")
-    public void deleteFromCart(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct) {
-        HttpSession session = request.getSession();
-        CartService cartService = (CartService) session.getAttribute("cartServiceImpl");
-        if (cartService != null) {
-            cartService.removeFromCart(idProduct);
-        }
+        Map<String, Object> response = prepareResponse();
+        return JsonMaker.make(response);
     }
 
     @RequestMapping(value = "/amount/update", produces = "application/json")
     @ResponseBody
     public String updateAmount(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct,
-                               @RequestParam(value = "value") int numberOfProducts) {
+                               @RequestParam(value = VALUE) int numberOfProducts) {
         HttpSession session = request.getSession();
-        CartService cartService = (CartService) session.getAttribute("cartServiceImpl");
-        if (cartService != null) {
-            cartService.updateNumberOfProductsInCart(idProduct, numberOfProducts);
-        }
+        CartService cartService = (CartService) session.getAttribute(CART_SERVICE_IMPL);
+        cartService.updateNumberOfProductInCart(idProduct, numberOfProducts);
 
-        JSONObject json = new JSONObject();
-        json.put("amount", cartService.getAmount());
-        json.put("size", cartService.getNumberOfProducts());
-        return json.toString();
+        Map<String, Object> response = prepareResponse();
+        return JsonMaker.make(response);
+    }
+
+    @RequestMapping(value = "/delete")
+    public void deleteFromCart(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct) {
+        HttpSession session = request.getSession();
+        CartService cartService = (CartService) session.getAttribute(CART_SERVICE_IMPL);
+        cartService.removeFromCart(idProduct);
     }
 
     @RequestMapping(value = "/checkout", method = RequestMethod.GET)
     public String showCart() {
         return "checkout";
+    }
+
+    private Map<String, Object> prepareResponse() {
+        Map<String, Object> response = new HashMap<String, Object>() {{
+            put(AMOUNT, cartService.getAmount());
+            put(SIZE, cartService.getNumberOfProductsInCart());
+        }};
+        return response;
     }
 }

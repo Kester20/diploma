@@ -10,7 +10,7 @@
 <fmt:setBundle var="b" basename="content"/>
 
 <c:choose>
-    <c:when test="${(empty sessionScope.cart) || (sessionScope.cartServiceImpl.getNumberOfProducts() == 0)}">
+    <c:when test="${(empty sessionScope.cart) || (sessionScope.cartServiceImpl.getNumberOfProductsInCart() == 0)}">
         <h2>${title}(EMPTY)</h2>
     </c:when>
 

@@ -27,10 +27,15 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void addToCart(long idProduct) {
+    public boolean addToCart(long idProduct) {
         Product product = productService.findOne(idProduct);
+        if (product == null) {
+            return false;
+        }
         int countOfProduct = getCountOfProductInCart(product);
-        cart.getProducts().put(product, countOfProduct);
+        Map<Product, Integer> productsInCart = cart.getProducts();
+        productsInCart.put(product, countOfProduct);
+        return true;
     }
 
     @Override
@@ -54,7 +59,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public void updateNumberOfProductsInCart(long idProduct, int numberOfProducts) {
+    public void updateNumberOfProductInCart(long idProduct, int numberOfProducts) {
         Map<Product, Integer> productsInCart = cart.getProducts();
         for (Product product : productsInCart.keySet()) {
             if (product.getId() == idProduct) {
@@ -64,7 +69,7 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public int getNumberOfProducts() {
+    public int getNumberOfProductsInCart() {
         int result = 0;
         Map<Product, Integer> productsInCart = cart.getProducts();
         for (Integer values : productsInCart.values()) {

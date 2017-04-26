@@ -31,13 +31,13 @@
             </div>
             <div class="header-right">
                 <div class="cart box_1">
-                    <a href="cart/checkout">
+                    <a href="/cart/checkout">
                         <h3>$<span id="total_head">${sessionScope.cartServiceImpl.getAmount()}
                             </span>
-                            (<span id="size_head">${sessionScope.cartServiceImpl.getNumberOfProducts()}</span>)<img src="/images/bag.png" alt=""></h3>
+                            (<span id="size_head">${sessionScope.cartServiceImpl.getNumberOfProductsInCart()}</span>)<img src="/images/bag.png" alt=""></h3>
                         </a>
 
-                        <c:if test="${(sessionScope.cartServiceImpl.getNumberOfProducts() > 0)}">
+                        <c:if test="${(sessionScope.cartServiceImpl.getNumberOfProductsInCart() > 0)}">
                             <p>
                                 <a href="" onclick="clearCart();">Empty cart</a>
                             </p>

@@ -5,6 +5,18 @@ package com.diploma.noormal.util;
  */
 public class Constants {
 
+    public static class ControllerConstants{
+        public final static String AMOUNT = "amount";
+        public final static String SIZE = "size";
+        public final static String CART_SERVICE_IMPL = "cartServiceImpl";
+        public static final String ID_PRODUCT = "idProduct";
+        public static final String VALUE = "value";
+        public static final String PRODUCT_NOT_FOUND = "Product not found!";
+        public static final String EXCEPTION = "exception";
+        public static final String URL = "url";
+        public static final String ERROR_PAGE = "errorPage";
+    }
+
     public static final String USER = "user";
     public static final String USER_AVATAR = "userAvatar";
     public static final String FIRST_NAME = "firstName";
@@ -75,7 +87,7 @@ public class Constants {
     public static final String DESC = " DESC";
     public static final String ASC = " ASC";
     public static final String CART = "cart";
-    public static final String ID_PRODUCT = "idProduct";
+
     public static final String VALUE = "value";
     public static final String REDIRECT_PAGE = "redirectPage";
     public static final String CREATE_ORDER_JSP = "createOrder.jsp";

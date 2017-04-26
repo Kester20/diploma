@@ -5,13 +5,13 @@ package com.diploma.noormal.service;
  */
 public interface CartService {
 
-    void addToCart(long idProduct);
+    boolean addToCart(long idProduct);
 
     void removeFromCart(long product);
 
     int getAmount();
 
-    int getNumberOfProducts();
+    int getNumberOfProductsInCart();
 
-    void updateNumberOfProductsInCart(long idProduct, int numberOfProducts);
+    void updateNumberOfProductInCart(long idProduct, int numberOfProducts);
 }
