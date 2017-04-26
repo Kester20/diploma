@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import static com.diploma.noormal.util.Constants.CHECKBOX_PRODUCER;
-import static com.diploma.noormal.util.Constants.FIRST_PRICE;
-import static com.diploma.noormal.util.Constants.ORDER_MODE;
-import static com.diploma.noormal.util.Constants.PAGE;
-import static com.diploma.noormal.util.Constants.SECOND_PRICE;
-import static com.diploma.noormal.util.Constants.SELECT_SHOW;
-import static com.diploma.noormal.util.Constants.SELECT_SORT;
+import static com.diploma.noormal.util.Constants.ControllerConstants.CHECKBOX_PRODUCER;
+import static com.diploma.noormal.util.Constants.ControllerConstants.FIRST_PRICE;
+import static com.diploma.noormal.util.Constants.ControllerConstants.ORDER_MODE;
+import static com.diploma.noormal.util.Constants.ControllerConstants.PAGE;
+import static com.diploma.noormal.util.Constants.ControllerConstants.SECOND_PRICE;
+import static com.diploma.noormal.util.Constants.ControllerConstants.SELECT_SHOW;
+import static com.diploma.noormal.util.Constants.ControllerConstants.SELECT_SORT;
 
 /**
  * @author Arsalan. Created on 14.04.2017.

@@ -50,12 +50,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public int getAmount() {
-        int result = 0;
         Map<Product, Integer> productsInCart = cart.getProducts();
-        for (Product product : productsInCart.keySet()) {
-            result += product.getCost() * productsInCart.get(product);
-        }
-        return result;
+        return productsInCart.keySet().stream().mapToInt(product -> product.getCost() * productsInCart.get(product)).sum();
     }
 
     @Override
@@ -70,12 +66,8 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public int getNumberOfProductsInCart() {
-        int result = 0;
         Map<Product, Integer> productsInCart = cart.getProducts();
-        for (Integer values : productsInCart.values()) {
-            result += values;
-        }
-        return result;
+        return productsInCart.values().stream().mapToInt(values -> values).sum();
     }
 
     private int getCountOfProductInCart(Product product) {

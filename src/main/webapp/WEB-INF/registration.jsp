@@ -22,7 +22,7 @@
         <script type="text/javascript" src="/js/bootstrap-3.1.1.min.js"></script>
         <script src="/js/jquery.min.js"></script>
         <script src="/js/simpleCart.min.js"></script>
-        <script type="text/javascript" src="/js/validation.js"></script>
+        <script type="text/javascript" src="/js/validationJQuery.js"></script>
         <script type="application/x-javascript" src="/js/addHandlerLoad.js"></script>
 </head>
 

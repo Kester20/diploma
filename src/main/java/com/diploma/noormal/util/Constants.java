@@ -5,7 +5,7 @@ package com.diploma.noormal.util;
  */
 public class Constants {
 
-    public static class ControllerConstants{
+    public static class ControllerConstants {
         public final static String AMOUNT = "amount";
         public final static String SIZE = "size";
         public final static String CART_SERVICE_IMPL = "cartServiceImpl";
@@ -15,6 +15,43 @@ public class Constants {
         public static final String EXCEPTION = "exception";
         public static final String URL = "url";
         public static final String ERROR_PAGE = "errorPage";
+        public static final String ERROR = "error";
+        public static final String CHECKBOX_PRODUCER = "checkboxProducer";
+        public static final String SELECT_SORT = "selectSort";
+        public static final String SELECT_SHOW = "selectShow";
+        public static final String FIRST_PRICE = "firstPrice";
+        public static final String SECOND_PRICE = "secondPrice";
+        public static final String PAGE = "page";
+        public static final String ORDER_MODE = "orderMode";
+        public static final String USER_FORM = "userForm";
+        public static final String INVALID_TOKENS = "Your username or password is invalid.";
+    }
+
+    public static class ServiceConstants {
+        public static final String CURRENT_PAGE = "currentPage";
+        public static final String COUNT_OF_LAPTOPS = "countOfLaptops";
+        public static final String COUNT_OF_PAGES = "countOfPages";
+        public static final String SHOW_COUNT = "showCount";
+        public static final String LAPTOP_LIST = "laptopList";
+        public static final String PRODUCER_LIST = "producerList";
+        public static final String LAPTOPS_ID = "id";
+        public static final String DESC = " DESC";
+        public static final String ASC = " ASC";
+        public static final int DEFAULT_FIRST_PRICE = 0;
+        public static final int DEFAULT_SECOND_PRICE = 100000;
+        public static final int DEFAULT_SELECT_SHOW = 6;
+        public static final int DEFAULT_PAGE = 1;
+    }
+
+    public static class ValidatorConstants {
+        public static final String USERNAME = "username";
+        public static final String PASSWORD = "password";
+        public static final String NOT_EMPTY = "NotEmpty";
+        public static final String SIZE_USER_FORM_USERNAME = "Size.userForm.username";
+        public static final String DUPLICATE_USER_FORM_USERNAME = "Duplicate.userForm.username";
+        public static final String SIZE_USER_FORM_PASSWORD = "Size.userForm.password";
+        public static final String DIFF_USER_FORM_PASSWORD_CONFIRM = "Diff.userForm.passwordConfirm";
+        public static final String PASSWORD_CONFIRM = "passwordConfirm";
     }
 
     public static final String USER = "user";
@@ -55,37 +92,28 @@ public class Constants {
     public static final String DATA_SOURCE_LOOKUP = "java:comp/env/jdbc/web_store";
     public static final String SIMPLE_TRANSACTIONAL_ERROR = "transactionalError";
     public static final String TRANSACTIONAL_ERROR = "IT IS SERVER ERROR. PLEASE, TRY AGAIN LATER.";
-    public static final String LAPTOP_LIST = "laptopList";
-    public static final String PRODUCER_LIST = "producerList";
+
     public static final String CATEGORY_LIST = "categoryList";
     public static final String PRODUCT_PRODUCER = "product.producer";
     public static final String PRODUCT_COST = "product.cost";
-    public static final String LAPTOPS_ID = "id";
-    public static final String FIRST_PRICE = "firstPrice";
-    public static final String SECOND_PRICE = "secondPrice";
+
+
     public static final String ORDER_BY = "orderBy";
     public static final String LIMIT = "showCount";
-    public static final String PAGE = "page";
+
     public static final String PHOTO = "photo";
     public static final String PNG = ".png";
-    public static final String CURRENT_PAGE = "currentPage";
-    public static final String COUNT_OF_LAPTOPS = "countOfLaptops";
-    public static final String COUNT_OF_PAGES = "countOfPages";
-    public static final String SHOW_COUNT = "showCount";
+
     public static final String CATALOG_FILTER_SERVICE = "catalogFilterService";
-    public static final String CHECKBOX_PRODUCER = "checkboxProducer";
-    public static final String CHECKBOX_CATEGORY = "checkboxCategory";
-    public static final String SELECT_SORT = "selectSort";
-    public static final String SELECT_SHOW = "selectShow";
+
     public static final String WHERE_SQL = " WHERE ";
     public static final String SIMPLE_AND_SQL = "AND (";
     public static final String AND_SQL = ") AND (";
     public static final String LIMIT_SQL = " LIMIT ";
     public static final String ORDER_BY_SQL = "ORDER BY ";
     public static final String OR_SQL = " OR ";
-    public static final String ORDER_MODE = "orderMode";
-    public static final String DESC = " DESC";
-    public static final String ASC = " ASC";
+
+
     public static final String CART = "cart";
 
     public static final String VALUE = "value";
@@ -106,10 +134,6 @@ public class Constants {
     public static final String PATH = "path";
     public static final int CODE_ERROR_403 = 403;
 
-    public static final int DEFAULT_FIRST_PRICE = 0;
-    public static final int DEFAULT_SECOND_PRICE = 100000;
-    public static final int DEFAULT_SELECT_SHOW = 6;
-    public static final int DEFAULT_PAGE = 1;
 
     public static final String GET_ALL_LAPTOPS = "SELECT * FROM `laptops`";
     public static final String GET_ALL_PRODUCERS = "SELECT * FROM producer";
