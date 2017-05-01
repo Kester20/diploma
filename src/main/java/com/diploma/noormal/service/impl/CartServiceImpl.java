@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -41,9 +42,10 @@ public class CartServiceImpl implements CartService {
     @Override
     public void removeFromCart(long idProduct) {
         Map<Product, Integer> productsInCart = cart.getProducts();
-        for (Product product : productsInCart.keySet()) {
+        for (Iterator<Product> iterator = productsInCart.keySet().iterator(); iterator.hasNext(); ) {
+            Product product = iterator.next();
             if (product.getId() == idProduct) {
-                productsInCart.remove(product);
+                iterator.remove();
             }
         }
     }

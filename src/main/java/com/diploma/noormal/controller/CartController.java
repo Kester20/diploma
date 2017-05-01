@@ -64,21 +64,18 @@ public class CartController {
     }
 
     @RequestMapping(value = "/delete")
+    @ResponseBody
     public void deleteFromCart(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct) {
         HttpSession session = request.getSession();
         CartService cartService = (CartService) session.getAttribute(CART_SERVICE_IMPL);
         cartService.removeFromCart(idProduct);
     }
 
-    @RequestMapping(value = "/checkout", method = RequestMethod.GET)
-    public String showCart() {
-        return "checkout";
-    }
-
     private Map<String, Object> prepareResponse() {
         Map<String, Object> response = new HashMap<String, Object>() {{
             put(AMOUNT, cartService.getAmount());
             put(SIZE, cartService.getNumberOfProductsInCart());
+            put("modal", "#cart");
         }};
         return response;
     }

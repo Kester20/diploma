@@ -7,38 +7,38 @@ $(function() {
 			max : 50000,
 			values : [ 0, 50000 ],
 			slide : function(event, ui) {
-				$("#amount").val(ui.values[0]);
-				$("#amount_1").val(ui.values[1]);
+				$("#amount_1").val(ui.values[0]);
+				$("#amount_2").val(ui.values[1]);
 			}
 		});
-		$("#amount").val($("#slider-range").slider("values", 0));
-		$("#amount_1").val($("#slider-range").slider("values", 1));
+		$("#amount_1").val($("#slider-range").slider("values", 0));
+		$("#amount_2").val($("#slider-range").slider("values", 1));
 
 		// Изменение местоположения ползунка при вводиде данных в первый элемент input
-		$("input#amount").change(function() {
-			var value1 = $("input#amount").val();
-			var value2 = $("input#amount_1").val();
+		$("input#amount_1").change(function() {
+			var value1 = $("input#amount_1").val();
+			var value2 = $("input#amount_2").val();
 			if (parseInt(value1) > parseInt(value2)) {
 				value1 = value2;
-				$("input#amount").val(value1);
+				$("input#amount_1").val(value1);
 			}
 			$("#slider-range").slider("values", 0, value1);
 		});
 
 		// Изменение местоположения ползунка при вводиде данных в второй элемент input
-		$("input#amount_1").change(function() {
-			var value1 = $("input#amount").val();
-			var value2 = $("input#amount_1").val();
+		$("input#amount_2").change(function() {
+			var value1 = $("input#amount_1").val();
+			var value2 = $("input#amount_2").val();
 
 			if (parseInt(value1) > parseInt(value2)) {
 				value2 = value1;
-				$("input#amount_1").val(value2);
+				$("input#amount_2").val(value2);
 			}
 			$("#slider-range").slider("values", 1, value2);
 		});
 
 		// фильтрация ввода в поля
-		jQuery('#amount, #amount_1').keypress(
+		jQuery('#amount_1, #amount_2').keypress(
 				function(event) {
 					var key, keyChar;
 					if (!event)

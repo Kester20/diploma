@@ -9,8 +9,9 @@
     <c:when test="${pageContext.request.userPrincipal.name == null}">
 
        <ul>
-            <li><a href="<c:url value='${contextPath}/account' />"><span class="glyphicon glyphicon-user"> </span><fmt:message  key="login" bundle="${bundle}"></fmt:message></a></li>
-            <li><a href="<c:url value='${contextPath}/registration' />"><span class="glyphicon glyphicon-lock"> </span><fmt:message  key="create_an_account" bundle="${bundle}"></fmt:message></a></li>
+            <li><a href="<c:url value='${contextPath}/login' />"><span class="glyphicon glyphicon-user"> </span><fmt:message  key="login" bundle="${bundle}"></fmt:message></a></li>
+            <li><a href="<c:url value='${contextPath}/registered' />"><span class="glyphicon glyphicon-lock"> </span><fmt:message  key="create_an_account" bundle="${bundle}"></fmt:message></a></li>
+            <li><a href="contact.html">Help</a></li>
        </ul>
 
     </c:when>
@@ -27,7 +28,7 @@
             <li><img class="avatar" src="${userAvatar}" /></li>
             <li><a>${pageContext.request.userPrincipal.name}</a></li>
             <li><a onclick="document.forms['logoutForm'].submit()"><span class="glyphicon glyphicon-user"> </span>Logout</a></li>
-
+            <li><a href="contact.html">Help</a></li>
        </ul>
 
     </c:otherwise>

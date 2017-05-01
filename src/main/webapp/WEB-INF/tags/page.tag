@@ -8,11 +8,10 @@
 
 <c:if test="${countOfLaptops > showCount}">
 
-    <ul class="women_pagenation">
-        <li>Page:</li>
+    <ul class="pagination paging" id="pagination">
 
         <c:if test="${currentPage != 1}">
-            <tg:createHrefPage url="${url}" nameHref="Prev" page="${currentPage - 1}"/>
+            <tg:createHrefPage url="${url}" nameHref="<<" page="${currentPage - 1}"/>
         </c:if>
 
         <c:set var="start" value="${currentPage - 1 eq 0 ? 1 : currentPage - 1}"/>
@@ -23,7 +22,7 @@
         </c:forEach>
 
         <c:if test="${currentPage < countOfPages}">
-            <tg:createHrefPage url="${url}" nameHref="Next" page="${currentPage + 1}"/>
+            <tg:createHrefPage url="${url}" nameHref=">>" page="${currentPage + 1}"/>
         </c:if>
 
     </ul>

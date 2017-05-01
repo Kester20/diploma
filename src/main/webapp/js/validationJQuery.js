@@ -8,7 +8,7 @@ function invokeAllFunctions() {
     var callbacks = [
         function() {
             return validateEmail(document.registerForm.email);
-                },
+        },
         function() {
             return isNotEmptyInput(document.registerForm.username);
         },
@@ -31,22 +31,12 @@ function invokeAllFunctions() {
 
 function validateField(condition, element, text) {
     if (!condition) {
-        setInvalidClass(element);
-        $(element).parent().next().html(text);
+        $(element).attr("id","invalid");
+        $(element).next().html(text);
     } else {
-        setValidClass(element);
-        $(element).parent().next().html("");
+        $(element).removeAttr("id");
+        $(element).next().html("");
     }
-}
-
-function setInvalidClass(element) {
-    $(element).parent().prev().addClass("text-info-invalid");
-    $(element).addClass("invalid");
-}
-
-function setValidClass(element) {
-    $(element).parent().prev().removeClass("text-info-invalid");
-    $(element).removeClass("invalid");
 }
 
 function isNotEmptyInput(input) {

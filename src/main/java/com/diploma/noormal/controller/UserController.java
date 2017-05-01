@@ -34,28 +34,28 @@ public class UserController {
         this.userValidator = userValidator;
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.GET)
+    @RequestMapping(value = "/registered", method = RequestMethod.GET)
     public String registration(Model model) {
         model.addAttribute(USER_FORM, new User());
-        return "registration";
+        return "registered";
     }
 
-    @RequestMapping(value = "/registration", method = RequestMethod.POST)
+    @RequestMapping(value = "/registered", method = RequestMethod.POST)
     public String registration(@ModelAttribute(USER_FORM) User userForm, BindingResult bindingResult) {
         userValidator.validate(userForm, bindingResult);
         if (bindingResult.hasErrors()) {
-            return "registration";
+            return "registered";
         }
         userService.save(userForm);
         securityService.autoLogin(userForm.getUsername(), userForm.getPasswordConfirm());
         return "redirect:/index";
     }
 
-    @RequestMapping(value = "/account", method = RequestMethod.GET)
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String login(Model model, String error) {
         if (error != null) {
             model.addAttribute(ERROR, INVALID_TOKENS);
         }
-        return "account";
+        return "login";
     }
 }
