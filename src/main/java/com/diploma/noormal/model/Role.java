@@ -25,15 +25,13 @@ public class Role {
         Role role = (Role) o;
 
         if (!id.equals(role.id)) return false;
-        if (!name.equals(role.name)) return false;
-        return users.equals(role.users);
+        return name.equals(role.name);
     }
 
     @Override
     public int hashCode() {
         int result = id.hashCode();
         result = 31 * result + name.hashCode();
-        result = 31 * result + users.hashCode();
         return result;
     }
 

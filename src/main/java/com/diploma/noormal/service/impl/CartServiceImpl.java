@@ -77,6 +77,11 @@ public class CartServiceImpl implements CartService {
         return productsInCart.get(product) == null ? 1 : productsInCart.get(product);
     }
 
+    @Override
+    public void clearCart() {
+        cart.getProducts().clear();
+    }
+
     public Cart getCart() {
         return cart;
     }

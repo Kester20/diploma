@@ -5,10 +5,7 @@ package com.diploma.noormal.model;
  */
 public enum OrderStatusType {
 
-    ACCEPTED,
     CONFIRMED,
-    FORMED,
-    EXPELLED,
     DONE,
-    CANCELED
+    CANCELLED
 }

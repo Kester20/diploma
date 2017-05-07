@@ -27,8 +27,8 @@ import static com.diploma.noormal.util.Constants.ControllerConstants.VALUE;
  * @author Arsalan. Created on 22.04.2017.
  */
 @Controller
-@Scope(value = "session")
-@RequestMapping(value = "/cart")
+@Scope("session")
+@RequestMapping("/cart")
 public class CartController {
 
     private CartService cartService;

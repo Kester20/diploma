@@ -15,25 +15,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href="css/404.css" rel="stylesheet" type="text/css"/>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css"/>
-    <link href="css/component.css" rel='stylesheet' type='text/css'/>
-    <link href="css/flexslider.css" rel="stylesheet"  type="text/css" media="screen"/>
-    <link href="css/font-awesome.css" rel="stylesheet">
-    <link href="css/modalDialog.css" rel="stylesheet"  type="text/css" media="screen"/>
-    <link href="css/skdslider.css" rel="stylesheet"  type="text/css" media="screen"/>
-    <link href="css/style.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/404.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+    <link href="/css/component.css" rel='stylesheet' type='text/css'/>
+    <link href="/css/flexslider.css" rel="stylesheet"  type="text/css" media="screen"/>
+    <link href="/css/font-awesome.css" rel="stylesheet">
+    <link href="/css/modalDialog.css" rel="stylesheet"  type="text/css" media="screen"/>
+    <link href="/css/skdslider.css" rel="stylesheet"  type="text/css" media="screen"/>
+    <link href="/css/style.css" rel="stylesheet" type="text/css"/>
     <link href='//fonts.googleapis.com/css?family=Raleway:400,100,100italic,200,200italic,300,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic'
           rel='stylesheet' type='text/css'>
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic'
           rel='stylesheet' type='text/css'>
     <link href="https://code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css" rel="stylesheet" />
 
-    <script src="js/bootstrap.js"></script>
-    <script src="js/cartOperation.js"></script>
-    <script src="js/changeLanguage.js"></script>
-    <script src="js/skdslider.min.js" type="text/javascript"></script>
-    <script src="js/validationJQuery.js"></script>
+    <script src="/js/bootstrap.js"></script>
+    <script src="/js/cartOperation.js"></script>
+    <script src="/js/changeLanguage.js"></script>
+    <script src="/js/skdslider.min.js" type="text/javascript"></script>
+    <script src="/js/validationJQuery.js"></script>
 </head>
 <body>
 

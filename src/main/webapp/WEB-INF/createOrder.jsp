@@ -8,7 +8,7 @@
 
     <head>
 
-        <title>Eshop a Flat E-Commerce Bootstrap Responsive Website Template | Chectout :: w3layouts</title>
+        <title>Gadget store</title>
 
         <link href="/css/bootstrap.css" rel='stylesheet' type='text/css'/>
         <link href="/css/style.css" rel="stylesheet" type="text/css" media="all"/>
@@ -30,7 +30,7 @@
     <div class="cart-items">
         <div class="container">
 
-            <tg:cart title="CREATE ORDER" blockUser="true" button=""/>
+
 
             <form action="<c:url value='confirm_order' />" method="post">
                 <span>Type payment</span>

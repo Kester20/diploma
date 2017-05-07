@@ -8,54 +8,20 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import java.util.Date;
+import javax.persistence.Table;
 
 /**
  * @author Arsalan. Created on 14.04.2017.
  */
 @Entity
+@Table(name = "`order`")
 public class Order {
 
     private Long id;
-    private OrderStatusType orderStatusType;
-    private String specificationStatus;
-    private Date date;
+    private OrderTypeDelivery typeDelivery;
+    private OrderTypePayment typePayment;
+    private OrderStatusType status;
     private User user;
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Order order = (Order) o;
-
-        if (!id.equals(order.id)) return false;
-        if (orderStatusType != order.orderStatusType) return false;
-        if (!specificationStatus.equals(order.specificationStatus)) return false;
-        if (!date.equals(order.date)) return false;
-        return user.equals(order.user);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + orderStatusType.hashCode();
-        result = 31 * result + specificationStatus.hashCode();
-        result = 31 * result + date.hashCode();
-        result = 31 * result + user.hashCode();
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "id=" + id +
-                ", orderStatusType=" + orderStatusType +
-                ", specificationStatus='" + specificationStatus + '\'' +
-                ", date=" + date +
-                ", user=" + user +
-                '}';
-    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -68,28 +34,30 @@ public class Order {
     }
 
     @Enumerated(EnumType.STRING)
-    public OrderStatusType getOrderStatusType() {
-        return orderStatusType;
+    public OrderTypeDelivery getTypeDelivery() {
+        return typeDelivery;
     }
 
-    public void setOrderStatusType(OrderStatusType orderStatusType) {
-        this.orderStatusType = orderStatusType;
+    public void setTypeDelivery(OrderTypeDelivery typeDelivery) {
+        this.typeDelivery = typeDelivery;
     }
 
-    public String getSpecificationStatus() {
-        return specificationStatus;
+    @Enumerated(EnumType.STRING)
+    public OrderTypePayment getTypePayment() {
+        return typePayment;
     }
 
-    public void setSpecificationStatus(String specificationStatus) {
-        this.specificationStatus = specificationStatus;
+    public void setTypePayment(OrderTypePayment typePayment) {
+        this.typePayment = typePayment;
     }
 
-    public Date getDate() {
-        return date;
+    @Enumerated(EnumType.STRING)
+    public OrderStatusType getStatus() {
+        return status;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public void setStatus(OrderStatusType status) {
+        this.status = status;
     }
 
     @ManyToOne
@@ -100,5 +68,40 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+
+        if (!id.equals(order.id)) return false;
+        if (typeDelivery != order.typeDelivery) return false;
+        if (typePayment != order.typePayment) return false;
+        if (status != order.status) return false;
+        return user.equals(order.user);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + typeDelivery.hashCode();
+        result = 31 * result + typePayment.hashCode();
+        result = 31 * result + status.hashCode();
+        result = 31 * result + user.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", typeDelivery=" + typeDelivery +
+                ", typePayment=" + typePayment +
+                ", status=" + status +
+                ", user=" + user +
+                '}';
     }
 }

@@ -25,6 +25,8 @@ public class Constants {
         public static final String ORDER_MODE = "orderMode";
         public static final String USER_FORM = "userForm";
         public static final String INVALID_TOKENS = "Your username or password is invalid.";
+        public static final String ORDER_ID = "orderId";
+        public static final String DONE_ORDER = "doneOrder";
     }
 
     public static class ServiceConstants {

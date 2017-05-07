@@ -30,7 +30,10 @@
 
             <div class="doneOrder">
 
-                <h2> Your order #${requestScope.lastOrderId} was registered!</h2>
+                <h2> Your order #${orderId} was registered!
+                <br>
+                     We will contact you shortly.
+                </h2>
 
             </div>
 
