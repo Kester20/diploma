@@ -38,7 +38,7 @@ public class OrderController {
     }
 
     @RequestMapping("/confirm")
-    public String confirmOrder(Model model) {
+    public String confirmOrder() {
         return "confirmOrder";
     }
 

@@ -22,7 +22,7 @@ public class ErrorController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(ProductNotFoundException.class)
-    public ModelAndView handleProductNotFoundError(HttpServletRequest req, Exception ex, HttpServletResponse response) {
+    public ModelAndView handleProductNotFoundError(HttpServletRequest req, Exception ex) {
         ModelAndView mav = new ModelAndView();
         mav.addObject(EXCEPTION, ex);
         mav.addObject(URL, req.getRequestURL());

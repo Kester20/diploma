@@ -39,9 +39,4 @@ public class OrderServiceImpl implements OrderService {
         Order savedOrder = orderRepository.save(order);
         return savedOrder.getId();
     }
-
-    @Override
-    public int getLastOrderId() {
-        return 0;
-    }
 }

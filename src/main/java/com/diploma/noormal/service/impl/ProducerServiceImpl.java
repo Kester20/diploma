@@ -14,8 +14,12 @@ import java.util.List;
 @Service
 public class ProducerServiceImpl implements ProducerService {
 
-    @Autowired
     private ProducerRepository producerRepository;
+
+    @Autowired
+    public ProducerServiceImpl(ProducerRepository producerRepository) {
+        this.producerRepository = producerRepository;
+    }
 
     @Override
     public List<Producer> getAllProducers() {

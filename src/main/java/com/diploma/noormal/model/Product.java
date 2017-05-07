@@ -19,30 +19,6 @@ public class Product {
     private int cost;
     private String image;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Product product = (Product) o;
-
-        if (cost != product.cost) return false;
-        if (!id.equals(product.id)) return false;
-        if (!producer.equals(product.producer)) return false;
-        if (!model.equals(product.model)) return false;
-        return image.equals(product.image);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + producer.hashCode();
-        result = 31 * result + model.hashCode();
-        result = 31 * result + cost;
-        result = 31 * result + image.hashCode();
-        return result;
-    }
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Long getId() {
@@ -85,5 +61,40 @@ public class Product {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+
+        if (cost != product.cost) return false;
+        if (!id.equals(product.id)) return false;
+        if (!producer.equals(product.producer)) return false;
+        if (!model.equals(product.model)) return false;
+        return image.equals(product.image);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + producer.hashCode();
+        result = 31 * result + model.hashCode();
+        result = 31 * result + cost;
+        result = 31 * result + image.hashCode();
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "id=" + id +
+                ", producer=" + producer +
+                ", model='" + model + '\'' +
+                ", cost=" + cost +
+                ", image='" + image + '\'' +
+                '}';
     }
 }

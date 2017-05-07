@@ -53,7 +53,8 @@ public class CartController {
 
     @RequestMapping(value = "/amount/update", produces = "application/json")
     @ResponseBody
-    public String updateAmount(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct,
+    public String updateAmount(HttpServletRequest request,
+                               @RequestParam(value = ID_PRODUCT) long idProduct,
                                @RequestParam(value = VALUE) int numberOfProducts) {
         HttpSession session = request.getSession();
         CartService cartService = (CartService) session.getAttribute(CART_SERVICE_IMPL);
