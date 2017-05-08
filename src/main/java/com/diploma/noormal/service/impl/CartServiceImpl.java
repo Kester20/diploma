@@ -8,8 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * @author Arsalan. Created on 23.04.2017.
@@ -80,6 +83,13 @@ public class CartServiceImpl implements CartService {
     @Override
     public void clearCart() {
         cart.getProducts().clear();
+    }
+
+    @Override
+    public List<Product> getAllProductsInCart() {
+        Map<Product, Integer> productsInCart = cart.getProducts();
+        Set<Product> productSet = productsInCart.keySet();
+        return new ArrayList<>(productSet);
     }
 
     public Cart getCart() {

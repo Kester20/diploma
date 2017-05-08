@@ -7,8 +7,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Arsalan. Created on 14.04.2017.
@@ -21,7 +26,9 @@ public class Order {
     private OrderTypeDelivery typeDelivery;
     private OrderTypePayment typePayment;
     private OrderStatusType status;
+    private Date date;
     private User user;
+    private List<Product> productList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -60,6 +67,14 @@ public class Order {
         this.status = status;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     public User getUser() {
@@ -68,6 +83,18 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "order_product",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    public List<Product> getProductList() {
+        return productList;
+    }
+
+    public void setProductList(List<Product> productList) {
+        this.productList = productList;
     }
 
     @Override
@@ -81,7 +108,9 @@ public class Order {
         if (typeDelivery != order.typeDelivery) return false;
         if (typePayment != order.typePayment) return false;
         if (status != order.status) return false;
-        return user.equals(order.user);
+        if (!date.equals(order.date)) return false;
+        if (!user.equals(order.user)) return false;
+        return productList.equals(order.productList);
     }
 
     @Override
@@ -90,7 +119,9 @@ public class Order {
         result = 31 * result + typeDelivery.hashCode();
         result = 31 * result + typePayment.hashCode();
         result = 31 * result + status.hashCode();
+        result = 31 * result + date.hashCode();
         result = 31 * result + user.hashCode();
+        result = 31 * result + productList.hashCode();
         return result;
     }
 
@@ -101,7 +132,9 @@ public class Order {
                 ", typeDelivery=" + typeDelivery +
                 ", typePayment=" + typePayment +
                 ", status=" + status +
+                ", date=" + date +
                 ", user=" + user +
+                ", productList=" + productList +
                 '}';
     }
 }

@@ -4,12 +4,16 @@ import com.diploma.noormal.model.Order;
 import com.diploma.noormal.model.OrderStatusType;
 import com.diploma.noormal.model.OrderTypeDelivery;
 import com.diploma.noormal.model.OrderTypePayment;
+import com.diploma.noormal.model.Product;
 import com.diploma.noormal.model.User;
 import com.diploma.noormal.repository.OrderRepository;
 import com.diploma.noormal.repository.UserRepository;
 import com.diploma.noormal.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Arsalan. Created on 14.04.2017.
@@ -28,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Long createOrder(String typeDelivery, String typePayment, String phoneNumber,
-                            String userName, String email) {
+                            String userName, String email, List<Product> productsInCart) {
 
         User user = userRepository.findByUsername(userName);
         Order order = new Order();
@@ -36,7 +40,13 @@ public class OrderServiceImpl implements OrderService {
         order.setTypePayment(OrderTypePayment.valueOf(typePayment));
         order.setStatus(OrderStatusType.CONFIRMED);
         order.setUser(user);
+        order.setProductList(productsInCart);
         Order savedOrder = orderRepository.save(order);
         return savedOrder.getId();
+    }
+
+    @Override
+    public List<Order> findOrdersByUser(Long userId) {
+        return orderRepository.findByUserId(userId);
     }
 }
