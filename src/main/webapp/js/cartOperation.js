@@ -50,3 +50,15 @@ function clearCart(){
       url: "clear_cart_servlet"
   });
 }
+
+function addToWishList(id) {
+    $.ajax({
+        type: "GET",
+        url: "/wishList/add",
+        dataType: "text",
+        data: "idProduct=" + id,
+        success: function(result) {
+            alert("Product was added to your wish list!")
+        }
+    });
+}

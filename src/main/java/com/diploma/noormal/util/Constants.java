@@ -10,6 +10,7 @@ public class Constants {
         public final static String SIZE = "size";
         public final static String CART_SERVICE_IMPL = "cartServiceImpl";
         public static final String ID_PRODUCT = "idProduct";
+        public static final String PRODUCT = "product";
         public static final String VALUE = "value";
         public static final String PRODUCT_NOT_FOUND = "Product not found!";
         public static final String EXCEPTION = "exception";

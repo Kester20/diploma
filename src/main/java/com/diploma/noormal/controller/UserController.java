@@ -1,10 +1,14 @@
 package com.diploma.noormal.controller;
 
 
+import com.diploma.noormal.model.Product;
 import com.diploma.noormal.model.User;
+import com.diploma.noormal.model.WishList;
 import com.diploma.noormal.service.OrderService;
+import com.diploma.noormal.service.ProductService;
 import com.diploma.noormal.service.SecurityService;
 import com.diploma.noormal.service.UserService;
+import com.diploma.noormal.service.WishListService;
 import com.diploma.noormal.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,6 +21,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.diploma.noormal.util.Constants.ControllerConstants.ERROR;
 import static com.diploma.noormal.util.Constants.ControllerConstants.INVALID_TOKENS;
@@ -32,14 +39,19 @@ public class UserController {
     private SecurityService securityService;
     private UserValidator userValidator;
     private OrderService orderService;
+    private WishListService wishListService;
+    private ProductService productService;
 
     @Autowired
     public UserController(UserService userService, SecurityService securityService,
-                          UserValidator userValidator, OrderService orderService) {
+                          UserValidator userValidator, OrderService orderService,
+                          WishListService wishListService, ProductService productService) {
         this.userService = userService;
         this.securityService = securityService;
         this.userValidator = userValidator;
         this.orderService = orderService;
+        this.wishListService = wishListService;
+        this.productService = productService;
     }
 
     @RequestMapping(value = "/registered", method = RequestMethod.GET)
@@ -93,7 +105,15 @@ public class UserController {
             }
 
             case "wishList":{
-
+                List<Product> products = new ArrayList<>();
+                List<WishList> wishList = wishListService.findWishListByUser(user.getId());
+                for (WishList w: wishList) {
+                    Long productId = w.getProductId();
+                    Product product = productService.findOne(productId);
+                    products.add(product);
+                }
+                modelAndView.addObject("wishList", products);
+                modelAndView.setViewName("/personalWishList");
                 break;
             }
 

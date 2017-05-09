@@ -21,7 +21,7 @@
                             <div class="snipcart-item block">
                                 <div class="snipcart-thumb">
 
-                                    <a class="cbp-vm-image" href="single.jsp">
+                                    <a class="cbp-vm-image" href="<c:url value='/single?idProduct=${laptop.id}' />">
                                         <div class="simpleCart_shelfItem">
                                             <div class="view view-first">
                                                 <div class="inner_content clearfix">

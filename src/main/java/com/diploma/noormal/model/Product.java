@@ -20,7 +20,6 @@ public class Product {
     private String model;
     private int cost;
     private String image;
-    private List<Order> orders;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -66,15 +65,6 @@ public class Product {
         this.image = image;
     }
 
-    @ManyToMany(mappedBy = "productList")
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,8 +76,7 @@ public class Product {
         if (!id.equals(product.id)) return false;
         if (!producer.equals(product.producer)) return false;
         if (!model.equals(product.model)) return false;
-        if (!image.equals(product.image)) return false;
-        return orders.equals(product.orders);
+        return image.equals(product.image);
     }
 
     @Override
@@ -97,7 +86,6 @@ public class Product {
         result = 31 * result + model.hashCode();
         result = 31 * result + cost;
         result = 31 * result + image.hashCode();
-        result = 31 * result + orders.hashCode();
         return result;
     }
 
@@ -109,7 +97,6 @@ public class Product {
                 ", model='" + model + '\'' +
                 ", cost=" + cost +
                 ", image='" + image + '\'' +
-                ", orders=" + orders +
                 '}';
     }
 }

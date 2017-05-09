@@ -11,41 +11,37 @@
     <title>Title</title>
 </head>
 <body>
-    <table  width="100%">
+    <table  width="100%" id="order">
+        <tr>
+            <td>
+                <label class="orderParametersName">Phone number:</label>
+            </td>
 
+            <td>
+                <label style="color:#fe9126;">userEmail</label>
+            </td>
 
+        </tr>
 
-                        <tr>
-                            <td>
-                                <label class="orderParametersName">Phone number:</label>
-                            </td>
+        <tr>
+            <td>
+                <label class="orderParametersName">Username:</label>
+            </td>
 
-                            <td>
-                                <label style="color:#fe9126;">userEmail</label>
-                            </td>
+            <td>
+                <label style="color:#fe9126;">${userName}</label>
+            </td>
+        </tr>
 
-                        </tr>
+        <tr>
+            <td>
+                <label class="orderParametersName">Email:</label>
+            </td>
 
-                        <tr>
-                            <td>
-                                <label class="orderParametersName">Username:</label>
-                            </td>
-
-                            <td>
-                                <label style="color:#fe9126;">${userName}</label>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-                                <label class="orderParametersName">Email:</label>
-                            </td>
-
-                            <td>
-                                <label style="color:#fe9126;">${userEmail}</label>
-                            </td>
-                        </tr>
-
-                    </table>
+            <td>
+                <label style="color:#fe9126;">${userEmail}</label>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>

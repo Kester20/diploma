@@ -8,7 +8,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Gadget store</title>
 </head>
 <body>
     <table id="orderList" cellpadding="10" border="1" width="100%" >
