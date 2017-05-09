@@ -48,4 +48,11 @@ public class UserServiceImpl implements UserService {
         wishList.add(product);
         userRepository.save(user);
     }
+
+    @Override
+    public void deleteFromWishList(User user, Product product) {
+        List<Product> wishList = user.getWishList();
+        wishList.remove(product);
+        userRepository.save(user);
+    }
 }

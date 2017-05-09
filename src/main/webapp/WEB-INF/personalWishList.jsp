@@ -16,6 +16,7 @@
     <th>Product</th>
     <th>Producer</th>
     <th>Model</th>
+    <th>Delete</th>
 
 
     <c:forEach var="product" items="${wishList}">
@@ -31,6 +32,11 @@
             <td>
                 ${product.model}
             </td>
+
+            <td style="text-align:center;">
+                <a class="deleteIcon" href="" onclick="deleteFromWishList('${product.id}')">X</a>
+            </td>
+
         </tr>
     </c:forEach>
 

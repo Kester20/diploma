@@ -62,3 +62,15 @@ function addToWishList(id) {
         }
     });
 }
+
+function deleteFromWishList(id) {
+    $.ajax({
+        type: "GET",
+        url: "/wishList/delete",
+        dataType: "text",
+        data: "idProduct=" + id,
+        success: function(result) {
+            location.reload();
+        }
+    });
+}

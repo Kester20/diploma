@@ -13,4 +13,6 @@ public interface UserService {
     User findByUsername(String username);
 
     void addToWishList(User user, Product product);
+
+    void deleteFromWishList(User user, Product product);
 }

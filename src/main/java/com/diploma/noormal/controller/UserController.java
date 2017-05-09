@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import static com.diploma.noormal.util.Constants.ControllerConstants.ERROR;
@@ -37,7 +38,6 @@ public class UserController {
     private SecurityService securityService;
     private UserValidator userValidator;
     private OrderService orderService;
-
     private ProductService productService;
 
     @Autowired
@@ -77,16 +77,25 @@ public class UserController {
     }
 
     @RequestMapping(value = "/wishList/add")
+    @ResponseBody
     public void addToWishList(@RequestParam(value = ID_PRODUCT) Long idProduct) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userService.findByUsername(name);
-
+        User user = getCurrnetUser();
         Product product = productService.findOne(idProduct);
         if (product == null) {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
         }
         userService.addToWishList(user, product);
+    }
+
+    @RequestMapping(value = "/wishList/delete")
+    @ResponseBody
+    public void deleteToWishList(@RequestParam(value = ID_PRODUCT) Long idProduct) {
+        User user = getCurrnetUser();
+        Product product = productService.findOne(idProduct);
+        if (product == null) {
+            throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
+        }
+        userService.deleteFromWishList(user, product);
     }
 
     @RequestMapping(value = "/personal")
@@ -96,10 +105,7 @@ public class UserController {
 
     @RequestMapping(value = "/info")
     public ModelAndView info(@RequestParam(value = "info") String info) {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        String name = auth.getName();
-        User user = userService.findByUsername(name);
-
+        User user = getCurrnetUser();
         ModelAndView modelAndView = new ModelAndView();
         prepareView(info, user, modelAndView);
         return modelAndView;
@@ -131,5 +137,11 @@ public class UserController {
                 break;
             }
         }
+    }
+
+    private User getCurrnetUser() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        return userService.findByUsername(name);
     }
 }
