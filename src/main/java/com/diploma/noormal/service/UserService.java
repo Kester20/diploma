@@ -1,5 +1,6 @@
 package com.diploma.noormal.service;
 
+import com.diploma.noormal.model.Product;
 import com.diploma.noormal.model.User;
 
 /**
@@ -10,4 +11,6 @@ public interface UserService {
     void save(User user);
 
     User findByUsername(String username);
+
+    void addToWishList(User user, Product product);
 }

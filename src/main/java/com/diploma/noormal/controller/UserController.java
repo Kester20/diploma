@@ -1,14 +1,13 @@
 package com.diploma.noormal.controller;
 
 
+import com.diploma.noormal.exception.ProductNotFoundException;
 import com.diploma.noormal.model.Product;
 import com.diploma.noormal.model.User;
-import com.diploma.noormal.model.WishList;
 import com.diploma.noormal.service.OrderService;
 import com.diploma.noormal.service.ProductService;
 import com.diploma.noormal.service.SecurityService;
 import com.diploma.noormal.service.UserService;
-import com.diploma.noormal.service.WishListService;
 import com.diploma.noormal.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -22,11 +21,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import static com.diploma.noormal.util.Constants.ControllerConstants.ERROR;
+import static com.diploma.noormal.util.Constants.ControllerConstants.ID_PRODUCT;
 import static com.diploma.noormal.util.Constants.ControllerConstants.INVALID_TOKENS;
+import static com.diploma.noormal.util.Constants.ControllerConstants.PRODUCT_NOT_FOUND;
 import static com.diploma.noormal.util.Constants.ControllerConstants.USER_FORM;
 
 /**
@@ -39,18 +37,17 @@ public class UserController {
     private SecurityService securityService;
     private UserValidator userValidator;
     private OrderService orderService;
-    private WishListService wishListService;
+
     private ProductService productService;
 
     @Autowired
     public UserController(UserService userService, SecurityService securityService,
                           UserValidator userValidator, OrderService orderService,
-                          WishListService wishListService, ProductService productService) {
+                          ProductService productService) {
         this.userService = userService;
         this.securityService = securityService;
         this.userValidator = userValidator;
         this.orderService = orderService;
-        this.wishListService = wishListService;
         this.productService = productService;
     }
 
@@ -79,13 +76,26 @@ public class UserController {
         return "login";
     }
 
+    @RequestMapping(value = "/wishList/add")
+    public void addToWishList(@RequestParam(value = ID_PRODUCT) Long idProduct) {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        String name = auth.getName();
+        User user = userService.findByUsername(name);
+
+        Product product = productService.findOne(idProduct);
+        if (product == null) {
+            throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
+        }
+        userService.addToWishList(user, product);
+    }
+
     @RequestMapping(value = "/personal")
-    public String personal(){
+    public String personal() {
         return "personal";
     }
 
     @RequestMapping(value = "/info")
-    public ModelAndView info(@RequestParam(value = "info") String info){
+    public ModelAndView info(@RequestParam(value = "info") String info) {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         User user = userService.findByUsername(name);
@@ -95,35 +105,28 @@ public class UserController {
         return modelAndView;
     }
 
-    private void prepareView(String info, User user,  ModelAndView modelAndView){
-        switch (info){
-            case "personalInfo":{
+    private void prepareView(String info, User user, ModelAndView modelAndView) {
+        switch (info) {
+            case "personalInfo": {
                 modelAndView.addObject("userName", user.getUsername());
                 modelAndView.addObject("userEmail", user.getEmail());
                 modelAndView.setViewName("/personalInfo");
                 break;
             }
 
-            case "wishList":{
-                List<Product> products = new ArrayList<>();
-                List<WishList> wishList = wishListService.findWishListByUser(user.getId());
-                for (WishList w: wishList) {
-                    Long productId = w.getProductId();
-                    Product product = productService.findOne(productId);
-                    products.add(product);
-                }
-                modelAndView.addObject("wishList", products);
+            case "wishList": {
+                modelAndView.addObject("wishList", user.getWishList());
                 modelAndView.setViewName("/personalWishList");
                 break;
             }
 
-            case "orderList":{
+            case "orderList": {
                 modelAndView.addObject("orderList", orderService.findOrdersByUser(user.getId()));
                 modelAndView.setViewName("/personalOrderList");
                 break;
             }
 
-            case "commentList":{
+            case "commentList": {
 
                 break;
             }

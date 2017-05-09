@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import static com.diploma.noormal.util.Constants.ControllerConstants.ERROR_PAGE;
 import static com.diploma.noormal.util.Constants.ControllerConstants.EXCEPTION;

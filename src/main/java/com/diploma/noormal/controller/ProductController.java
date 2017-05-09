@@ -49,10 +49,10 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/single")
-    public ModelAndView single(@RequestParam(value = ID_PRODUCT) Long idProduct){
+    public ModelAndView single(@RequestParam(value = ID_PRODUCT) Long idProduct) {
         ModelAndView modelAndView = new ModelAndView();
         Product product = productService.findOne(idProduct);
-        if(product == null){
+        if (product == null) {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
         }
         modelAndView.addObject(PRODUCT, product);

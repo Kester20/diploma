@@ -22,6 +22,7 @@ public class User {
     private String passwordConfirm;
     private String email;
     private List<Role> roles;
+    private List<Product> wishList;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -76,6 +77,18 @@ public class User {
 
     public void setRoles(List<Role> roles) {
         this.roles = roles;
+    }
+
+    @ManyToMany
+    @JoinTable(name = "wish_list",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    public List<Product> getWishList() {
+        return wishList;
+    }
+
+    public void setWishList(List<Product> wishList) {
+        this.wishList = wishList;
     }
 
     @Override

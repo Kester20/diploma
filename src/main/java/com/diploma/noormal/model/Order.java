@@ -13,7 +13,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author Arsalan. Created on 14.04.2017.

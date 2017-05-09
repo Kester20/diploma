@@ -1,5 +1,6 @@
 package com.diploma.noormal.service.impl;
 
+import com.diploma.noormal.model.Product;
 import com.diploma.noormal.model.Role;
 import com.diploma.noormal.model.User;
 import com.diploma.noormal.repository.RoleRepository;
@@ -39,5 +40,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public void addToWishList(User user, Product product) {
+        List<Product> wishList = user.getWishList();
+        wishList.add(product);
+        userRepository.save(user);
     }
 }
