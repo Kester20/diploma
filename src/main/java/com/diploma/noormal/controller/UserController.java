@@ -26,6 +26,7 @@ import static com.diploma.noormal.util.Constants.ControllerConstants.ERROR;
 import static com.diploma.noormal.util.Constants.ControllerConstants.ID_PRODUCT;
 import static com.diploma.noormal.util.Constants.ControllerConstants.INVALID_TOKENS;
 import static com.diploma.noormal.util.Constants.ControllerConstants.PRODUCT_NOT_FOUND;
+import static com.diploma.noormal.util.Constants.ControllerConstants.TEXT;
 import static com.diploma.noormal.util.Constants.ControllerConstants.USER_FORM;
 
 /**
@@ -96,6 +97,19 @@ public class UserController {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
         }
         userService.deleteFromWishList(user, product);
+    }
+
+    @RequestMapping(value = "/comment/add")
+    @ResponseBody
+    public void addComment(
+            @RequestParam(value = ID_PRODUCT) Long idProduct,
+            @RequestParam(value = TEXT) String text) {
+        User user = getCurrnetUser();
+        Product product = productService.findOne(idProduct);
+        if (product == null) {
+            throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
+        }
+        userService.addComment(user, product, text);
     }
 
     @RequestMapping(value = "/personal")

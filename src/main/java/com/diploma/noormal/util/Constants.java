@@ -28,6 +28,7 @@ public class Constants {
         public static final String INVALID_TOKENS = "Your username or password is invalid.";
         public static final String ORDER_ID = "orderId";
         public static final String DONE_ORDER = "doneOrder";
+        public static final String TEXT = "text";
     }
 
     public static class ServiceConstants {
@@ -132,7 +133,7 @@ public class Constants {
     public static final String ACCEPT_ENCODING = "Accept-Encoding";
     public static final String CONTENT_ENCODING = "Content-Encoding";
     public static final String GZIP = "gzip";
-    public static final String TEXT = "text";
+
     public static final String ACCESS_DENIED = "ACCESS DENIED";
     public static final String PATH = "path";
     public static final int CODE_ERROR_403 = 403;

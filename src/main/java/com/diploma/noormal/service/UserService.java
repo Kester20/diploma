@@ -15,4 +15,6 @@ public interface UserService {
     void addToWishList(User user, Product product);
 
     void deleteFromWishList(User user, Product product);
+
+    void addComment(User user, Product product, String text);
 }

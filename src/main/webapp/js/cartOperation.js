@@ -58,7 +58,7 @@ function addToWishList(id) {
         dataType: "text",
         data: "idProduct=" + id,
         success: function(result) {
-            alert("Product was added to your wish list!")
+            location.reload();
         }
     });
 }
@@ -69,6 +69,19 @@ function deleteFromWishList(id) {
         url: "/wishList/delete",
         dataType: "text",
         data: "idProduct=" + id,
+        success: function(result) {
+            location.reload();
+        }
+    });
+}
+
+function addComment(id) {
+    var text = document.getElementById("textarea").value;
+    $.ajax({
+        type: "GET",
+        url: "/comment/add",
+        dataType: "text",
+        data: "idProduct=" + id + "&text=" + text,
         success: function(result) {
             location.reload();
         }

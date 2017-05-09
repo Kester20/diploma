@@ -1,8 +1,10 @@
 package com.diploma.noormal.service.impl;
 
+import com.diploma.noormal.model.Comment;
 import com.diploma.noormal.model.Product;
 import com.diploma.noormal.model.Role;
 import com.diploma.noormal.model.User;
+import com.diploma.noormal.repository.CommentRepository;
 import com.diploma.noormal.repository.RoleRepository;
 import com.diploma.noormal.repository.UserRepository;
 import com.diploma.noormal.service.UserService;
@@ -21,13 +23,15 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
     private RoleRepository roleRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder;
+    private CommentRepository commentRepository;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, RoleRepository roleRepository,
-                           BCryptPasswordEncoder bCryptPasswordEncoder) {
+                           BCryptPasswordEncoder bCryptPasswordEncoder, CommentRepository commentRepository) {
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
         this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+        this.commentRepository = commentRepository;
     }
 
     @Override
@@ -54,5 +58,14 @@ public class UserServiceImpl implements UserService {
         List<Product> wishList = user.getWishList();
         wishList.remove(product);
         userRepository.save(user);
+    }
+
+    @Override
+    public void addComment(User user, Product product, String text) {
+        Comment comment = new Comment();
+        comment.setProduct(product);
+        comment.setUser(user);
+        comment.setText(text);
+        commentRepository.save(comment);
     }
 }

@@ -45,7 +45,8 @@
 
                         <div style="border-bottom: 1px solid #ddd;"></div>
 
-                        <input class="subm" style="width:150px;margin-left:73px;" type="submit" value="Buy" />
+                        <input class="subm" style="width:150px;margin-left:73px;" type="submit" value="Buy"
+                         onclick="addToCart(${product.id})"/>
 
                         <div style="border-bottom: 1px solid #ddd;margin-top:20px;"></div>
 
@@ -87,7 +88,7 @@
                         placeholder="Write comment..." id="textarea"></textarea>
 
                     <button style="float: right; width: 150px;margin-top:20px;" class="subm"
-                        onclick="">
+                        onclick="addComment('${product.id}')">
                         <i class="fa fa-pencil"></i>Accept
                     </button>
 
