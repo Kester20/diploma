@@ -18,6 +18,11 @@ import java.util.List;
 import static com.diploma.noormal.util.Constants.ControllerConstants.CART_SERVICE_IMPL;
 import static com.diploma.noormal.util.Constants.ControllerConstants.DONE_ORDER;
 import static com.diploma.noormal.util.Constants.ControllerConstants.ORDER_ID;
+import static com.diploma.noormal.util.Constants.ControllerConstants.PHONE_NUMBER;
+import static com.diploma.noormal.util.Constants.ControllerConstants.TYPE_DELIVERY;
+import static com.diploma.noormal.util.Constants.ControllerConstants.TYPE_PAYMENT;
+import static com.diploma.noormal.util.Constants.ControllerConstants.USER_EMAIL;
+import static com.diploma.noormal.util.Constants.ControllerConstants.USER_NAME;
 
 /**
  * @author Arsalan. Created on 01.05.2017.
@@ -45,11 +50,11 @@ public class OrderController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView addOrder(
-            @RequestParam(value = "typeDelivery", required = false) String typeDelivery,
-            @RequestParam(value = "typePayment", required = false) String typePayment,
-            @RequestParam(value = "phoneNumber", required = false) String phoneNumber,
-            @RequestParam(value = "userName", required = false) String userName,
-            @RequestParam(value = "userEmail", required = false) String email,
+            @RequestParam(value = TYPE_DELIVERY, required = false) String typeDelivery,
+            @RequestParam(value = TYPE_PAYMENT, required = false) String typePayment,
+            @RequestParam(value = PHONE_NUMBER, required = false) String phoneNumber,
+            @RequestParam(value = USER_NAME, required = false) String userName,
+            @RequestParam(value = USER_EMAIL, required = false) String email,
             HttpServletRequest request) {
 
         HttpSession session = request.getSession();

@@ -29,6 +29,11 @@ public class Constants {
         public static final String ORDER_ID = "orderId";
         public static final String DONE_ORDER = "doneOrder";
         public static final String TEXT = "text";
+        public static final String TYPE_DELIVERY = "typeDelivery";
+        public static final String TYPE_PAYMENT = "typePayment";
+        public static final String PHONE_NUMBER = "phoneNumber";
+        public static final String USER_NAME = "userName";
+        public static final String USER_EMAIL = "userEmail";
     }
 
     public static class ServiceConstants {
