@@ -4,6 +4,7 @@ package com.diploma.noormal.controller;
 import com.diploma.noormal.exception.ProductNotFoundException;
 import com.diploma.noormal.model.Product;
 import com.diploma.noormal.model.User;
+import com.diploma.noormal.service.CommentService;
 import com.diploma.noormal.service.OrderService;
 import com.diploma.noormal.service.ProductService;
 import com.diploma.noormal.service.SecurityService;
@@ -40,16 +41,18 @@ public class UserController {
     private UserValidator userValidator;
     private OrderService orderService;
     private ProductService productService;
+    private CommentService commentService;
 
     @Autowired
     public UserController(UserService userService, SecurityService securityService,
                           UserValidator userValidator, OrderService orderService,
-                          ProductService productService) {
+                          ProductService productService, CommentService commentService) {
         this.userService = userService;
         this.securityService = securityService;
         this.userValidator = userValidator;
         this.orderService = orderService;
         this.productService = productService;
+        this.commentService = commentService;
     }
 
     @RequestMapping(value = "/registered", method = RequestMethod.GET)
@@ -109,7 +112,7 @@ public class UserController {
         if (product == null) {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
         }
-        userService.addComment(user, product, text);
+        commentService.addComment(user, product, text);
     }
 
     @RequestMapping(value = "/personal")
@@ -147,7 +150,8 @@ public class UserController {
             }
 
             case "commentList": {
-
+                modelAndView.addObject("commentList", commentService.findCommentsByUser(user.getId()));
+                modelAndView.setViewName("/personalCommentList");
                 break;
             }
         }

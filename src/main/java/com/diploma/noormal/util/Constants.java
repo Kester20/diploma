@@ -34,6 +34,7 @@ public class Constants {
         public static final String PHONE_NUMBER = "phoneNumber";
         public static final String USER_NAME = "userName";
         public static final String USER_EMAIL = "userEmail";
+        public static final String COMMENT_LIST = "commentList";
     }
 
     public static class ServiceConstants {

@@ -37,52 +37,76 @@
             <div class="products-right-grid">
                 <div class="products-right-grids">
 
-                    <div style="background: #eeeeec;width:300px;height:200px;float:left;">
+                    <div>
+                        <div style="background: #eeeeec;width:300px;height:200px;float:left;">
 
-                        <h2 style="font-weight: normal;margin-top:10px;margin-bottom:10px;text-align:center">
-                            $${product.cost}
-                        </h2>
+                            <h2 style="font-weight: normal;margin-top:10px;margin-bottom:10px;text-align:center">
+                                $${product.cost}
+                            </h2>
 
-                        <div style="border-bottom: 1px solid #ddd;"></div>
+                            <div style="border-bottom: 1px solid #ddd;"></div>
 
-                        <input class="subm" style="width:150px;margin-left:73px;" type="submit" value="Buy"
-                         onclick="addToCart(${product.id})"/>
+                            <input class="subm" style="width:150px;margin-left:73px;" type="submit" value="Buy"
+                             onclick="addToCart(${product.id})"/>
 
-                        <div style="border-bottom: 1px solid #ddd;margin-top:20px;"></div>
+                            <div style="border-bottom: 1px solid #ddd;margin-top:20px;"></div>
 
-                        <input class="subm" style="width:150px;background-color:#fe9126;margin-left:73px;"
-                        type="submit" value="Add to wish list" onclick="addToWishList(${product.id})"/>
+                            <input class="subm" style="width:150px;background-color:#fe9126;margin-left:73px;"
+                            type="submit" value="Add to wish list" onclick="addToWishList(${product.id})"/>
 
+                        </div>
+
+
+                        <div style="float:right;height:200px;">
+                            <table id="order" style="width:400px;">
+
+                                <tr>
+                                    <td>
+                                        <label class="orderParametersName">Producer:</label>
+                                    </td>
+
+                                    <td>
+                                        ${product.producer.name}
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <label class="orderParametersName">Model:</label>
+                                    </td>
+
+                                    <td>
+                                        ${product.model}
+                                    </td>
+                                </tr>
+
+                            </table>
+
+                        </div>
                     </div>
 
 
-                    <div style="float:right">
-                        <table id="order" style="width:400px;">
+                        <c:forEach var="comment" items="${commentList}">
+                        <div style="float:left;margin-top:10px;width:100%;">
+                            <hr>
 
-                            <tr>
-                                <td>
-                                    <label class="orderParametersName">Producer:</label>
-                                </td>
+                            <div style="float:right;">
+                                ${comment.date}
+                            </div>
+                            <div style="float:left;">
+                                <h4><i class="fa fa-user" style="color: #fe9126;"></i>${comment.user.username}</h4>
+                                <p>${comment.text}</p>
+                            </div>
 
-                                <td>
-                                    ${product.producer.name}
-                                </td>
 
-                            </tr>
 
-                            <tr>
-                                <td>
-                                    <label class="orderParametersName">Model:</label>
-                                </td>
+                        </div>
 
-                                <td>
-                                    ${product.model}
-                                </td>
-                            </tr>
+                        </c:forEach>
 
-                        </table>
 
-                    </div>
+
 
                     <textarea rows="6"  style="overflow: auto;float: right;width:100%;margin-top:20px;"
                         placeholder="Write comment..." id="textarea"></textarea>

@@ -1,7 +1,9 @@
 package com.diploma.noormal.controller;
 
 import com.diploma.noormal.exception.ProductNotFoundException;
+import com.diploma.noormal.model.Comment;
 import com.diploma.noormal.model.Product;
+import com.diploma.noormal.service.CommentService;
 import com.diploma.noormal.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.List;
+
 import static com.diploma.noormal.util.Constants.ControllerConstants.CHECKBOX_PRODUCER;
+import static com.diploma.noormal.util.Constants.ControllerConstants.COMMENT_LIST;
 import static com.diploma.noormal.util.Constants.ControllerConstants.FIRST_PRICE;
 import static com.diploma.noormal.util.Constants.ControllerConstants.ID_PRODUCT;
 import static com.diploma.noormal.util.Constants.ControllerConstants.ORDER_MODE;
@@ -29,10 +34,12 @@ import static com.diploma.noormal.util.Constants.ControllerConstants.SELECT_SORT
 public class ProductController {
 
     private ProductService productService;
+    private CommentService commentService;
 
     @Autowired
-    public ProductController(ProductService productService) {
+    public ProductController(ProductService productService, CommentService commentService) {
         this.productService = productService;
+        this.commentService = commentService;
     }
 
     @RequestMapping(value = "/catalog", method = RequestMethod.GET)
@@ -55,7 +62,9 @@ public class ProductController {
         if (product == null) {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
         }
+        List<Comment> productsComments = commentService.findPublishedCommentsByProduct(product.getId());
         modelAndView.addObject(PRODUCT, product);
+        modelAndView.addObject(COMMENT_LIST, productsComments);
         modelAndView.setViewName("single");
         return modelAndView;
     }
