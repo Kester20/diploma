@@ -13,12 +13,13 @@
 <body>
     <table  width="100%" id="order">
         <tr>
+
             <td>
                 <label class="orderParametersName">Phone number:</label>
             </td>
 
             <td>
-                <label style="color:#fe9126;">userEmail</label>
+                <label style="color:#fe9126;">+380936674555</label>
             </td>
 
         </tr>

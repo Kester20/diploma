@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<fmt:setLocale value="${language}" />
+<fmt:setLocale value="${locale}" />
 <fmt:setBundle var="bundle" basename="content" />
 
 <c:choose>
@@ -11,7 +11,7 @@
        <ul>
             <li><a href="<c:url value='${contextPath}/login' />"><span class="glyphicon glyphicon-user"> </span><fmt:message  key="login" bundle="${bundle}"></fmt:message></a></li>
             <li><a href="<c:url value='${contextPath}/registered' />"><span class="glyphicon glyphicon-lock"> </span><fmt:message  key="create_an_account" bundle="${bundle}"></fmt:message></a></li>
-            <li><a href="contact.html">Help</a></li>
+            <li><a href="contact.html"><fmt:message  key="help" bundle="${bundle}"/></a></li>
        </ul>
 
     </c:when>

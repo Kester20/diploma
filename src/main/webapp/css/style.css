@@ -182,7 +182,7 @@ input[type=radio]:checked ~ label{
 }
 
 .orderSelect{
-    width: 200px;
+    width: 220px;
 }
 
 .newButton {
@@ -256,6 +256,10 @@ input[type=radio]:checked ~ label{
 	font-size: 14px; /* Размер текста подсказки */
 	padding: 5px 10px; /* Поля */
 /* 	border: 1px solid #333; Параметры рамки */
+}
+
+#menu li{
+   margin-right:15px;
 }
 
 

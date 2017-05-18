@@ -86,7 +86,7 @@
                         </td>
 
                         <td>
-                            <input type="text" placeholder="+38-() - - -"  />
+                            <input type="text" placeholder="+380936674555" style="width: 220px;"  />
                         </td>
 
                     </tr>
@@ -97,7 +97,7 @@
                         </td>
 
                         <td>
-                            <input type="text" readonly name="userName" value="arsalan">
+                            <input type="text" readonly name="userName" value="arsalan" style="width: 220px;">
                         </td>
                     </tr>
 
@@ -107,7 +107,7 @@
                         </td>
 
                         <td>
-                            <input type="text" readonly name="userEmail" value="arsalan">
+                            <input type="text" readonly name="userEmail" value="arsalan.noormal@gmail.com" style="width: 220px;">
                         </td>
                     </tr>
 

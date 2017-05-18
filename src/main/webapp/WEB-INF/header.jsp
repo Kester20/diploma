@@ -5,7 +5,7 @@
 <%@ taglib tagdir="/WEB-INF/tags" prefix="tg" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
-<fmt:setLocale value="${language}"/>
+<fmt:setLocale value="${locale}"/>
 <fmt:setBundle var="bundle" basename="content"/>
 
 <!DOCTYPE html>
@@ -44,12 +44,15 @@
     <div class="container">
 
         <div class="w3l_offers">
-            <p><a href="<c:url value='catalog' />">SHOP NOW</a></p>
+            <p><a href="<c:url value='catalog' />"><fmt:message  key="shop_now" bundle="${bundle}"/></a>
+            <tg:chooseLanguage/></p>
         </div>
 
         <div class="agile-login">
             <tg:logIn/>
         </div>
+
+
 
         <div class="product_list_header">
             <form action="#" method="post" class="last">
@@ -80,7 +83,7 @@
 
         <div class="w3ls_logo_products_left1">
             <ul class="phone_email">
-                <li><i class="fa fa-phone" aria-hidden="true"></i>Order online or call us : (+0123) 234 567</li>
+                <li><i class="fa fa-phone" aria-hidden="true"></i><fmt:message  key="call_us" bundle="${bundle}"/> : (+0123) 234 567</li>
             </ul>
         </div>
 
@@ -90,7 +93,7 @@
 
         <div class="w3l_search">
             <form action="#" method="post">
-                <input type="search" name="Search" placeholder="Search for a Product..." required="">
+                <input type="search" name="Search" placeholder="<fmt:message  key="search_product" bundle="${bundle}"/>..." required="">
                 <button type="submit" class="btn btn-default search" aria-label="Left Align">
                     <i class="fa fa-search" aria-hidden="true"> </i>
                 </button>
@@ -119,17 +122,17 @@
             </div>
 
             <div class="collapse navbar-collapse" id="bs-megadropdown-tabs">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="/index" class="act">Home</a></li>
+                <ul class="nav navbar-nav" id="menu">
+                    <li class="active"><a href="/index" class="act"><fmt:message  key="home" bundle="${bundle}"/></a></li>
                     <!-- Mega Menu -->
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Laptops<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message  key="laptops" bundle="${bundle}"/><b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-3">
                             <div class="row">
                                 <div class="multi-gd-img">
                                     <ul class="multi-column-dropdown">
                                         <h6>All Groceries</h6>
-                                        <li><a href="<c:url value='catalog' />">Laptops</a></li>
+                                        <li><a href="<c:url value='catalog' />"><fmt:message  key="laptops" bundle="${bundle}"/></a></li>
                                     </ul>
                                 </div>
 
@@ -137,7 +140,39 @@
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Личный кабинет<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message  key="phones" bundle="${bundle}"/><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu multi-column columns-3">
+                            <div class="row">
+                                <div class="multi-gd-img">
+                                    <ul class="multi-column-dropdown">
+                                        <h6>Baby Care</h6>
+                                        <li><a href="personalcare.html"><fmt:message  key="phones" bundle="${bundle}"/></a></li>
+                                    </ul>
+                                </div>
+
+                            </div>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message  key="tablets" bundle="${bundle}"/><b
+                                class="caret"></b></a>
+                        <ul class="dropdown-menu multi-column columns-3">
+                            <div class="row">
+                                <div class="multi-gd-img">
+                                    <ul class="multi-column-dropdown">
+                                        <h6>All Accessories</h6>
+                                        <li><a href="packagedfoods.html"><fmt:message  key="tablets" bundle="${bundle}"/></a></li>
+                                    </ul>
+                                </div>
+
+
+                            </div>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><fmt:message  key="p_area" bundle="${bundle}"/><b class="caret"></b></a>
                         <ul class="dropdown-menu multi-column columns-3">
                             <div class="row">
                                 <div class="multi-gd-img">
@@ -151,69 +186,11 @@
                             </div>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Personal Care<b
-                                class="caret"></b></a>
-                        <ul class="dropdown-menu multi-column columns-3">
-                            <div class="row">
-                                <div class="multi-gd-img">
-                                    <ul class="multi-column-dropdown">
-                                        <h6>Baby Care</h6>
-                                        <li><a href="personalcare.html">Baby Soap</a></li>
-                                        <li><a href="personalcare.html">Baby Care Accessories</a></li>
-                                        <li><a href="personalcare.html">Baby Oil & Shampoos</a></li>
-                                        <li><a href="personalcare.html">Baby Creams & Lotion</a></li>
-                                        <li><a href="personalcare.html"> Baby Powder</a></li>
-                                        <li><a href="personalcare.html">Diapers & Wipes</a></li>
-                                    </ul>
-                                </div>
 
-                            </div>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Packaged Foods<b
-                                class="caret"></b></a>
-                        <ul class="dropdown-menu multi-column columns-3">
-                            <div class="row">
-                                <div class="multi-gd-img">
-                                    <ul class="multi-column-dropdown">
-                                        <h6>All Accessories</h6>
-                                        <li><a href="packagedfoods.html">Baby Food</a></li>
-                                        <li><a href="packagedfoods.html">Dessert Items</a></li>
-                                        <li><a href="packagedfoods.html">Biscuits</a></li>
-                                        <li><a href="packagedfoods.html">Breakfast Cereals</a></li>
-                                        <li><a href="packagedfoods.html"> Canned Food </a></li>
-                                        <li><a href="packagedfoods.html">Chocolates & Sweets</a></li>
-                                    </ul>
-                                </div>
+                    <li><a href="offers.html"><fmt:message  key="offers" bundle="${bundle}"/></a></li>
+                    <li><a href="contactttttt.html"><fmt:message  key="about_us" bundle="${bundle}"/></a></li>
+                    <li><a href="contactttttt.html"><fmt:message  key="contact_us" bundle="${bundle}"/></a></li>
 
-
-                            </div>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Beverages<b class="caret"></b></a>
-                        <ul class="dropdown-menu multi-column columns-3">
-                            <div class="row">
-                                <div class="multi-gd-img">
-                                    <ul class="multi-column-dropdown">
-                                        <h6>Tea & Coeffe</h6>
-                                        <li><a href="beverages.html">Green Tea</a></li>
-                                        <li><a href="beverages.html">Ground Coffee</a></li>
-                                        <li><a href="beverages.html">Herbal Tea</a></li>
-                                        <li><a href="beverages.html">Instant Coffee</a></li>
-                                        <li><a href="beverages.html"> Tea </a></li>
-                                        <li><a href="beverages.html">Tea Bags</a></li>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </ul>
-                    </li>
-
-                    <li><a href="offers.html">Offers</a></li>
-                    <li><a href="contactttttt.html">Contact</a></li>
                 </ul>
             </div>
         </nav>
