@@ -83,7 +83,7 @@ public class UserController {
     @RequestMapping(value = "/wishList/add")
     @ResponseBody
     public void addToWishList(@RequestParam(value = ID_PRODUCT) Long idProduct) {
-        User user = getCurrnetUser();
+        User user = getCurrentUser();
         Product product = productService.findOne(idProduct);
         if (product == null) {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
@@ -94,7 +94,7 @@ public class UserController {
     @RequestMapping(value = "/wishList/delete")
     @ResponseBody
     public void deleteToWishList(@RequestParam(value = ID_PRODUCT) Long idProduct) {
-        User user = getCurrnetUser();
+        User user = getCurrentUser();
         Product product = productService.findOne(idProduct);
         if (product == null) {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
@@ -107,7 +107,7 @@ public class UserController {
     public void addComment(
             @RequestParam(value = ID_PRODUCT) Long idProduct,
             @RequestParam(value = TEXT) String text) {
-        User user = getCurrnetUser();
+        User user = getCurrentUser();
         Product product = productService.findOne(idProduct);
         if (product == null) {
             throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
@@ -122,7 +122,7 @@ public class UserController {
 
     @RequestMapping(value = "/info")
     public ModelAndView info(@RequestParam(value = "info") String info) {
-        User user = getCurrnetUser();
+        User user = getCurrentUser();
         ModelAndView modelAndView = new ModelAndView();
         prepareView(info, user, modelAndView);
         return modelAndView;
@@ -157,7 +157,7 @@ public class UserController {
         }
     }
 
-    private User getCurrnetUser() {
+    private User getCurrentUser() {
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         String name = auth.getName();
         return userService.findByUsername(name);
