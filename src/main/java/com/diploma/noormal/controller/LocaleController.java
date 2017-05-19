@@ -15,11 +15,12 @@ import static com.diploma.noormal.util.Constants.ControllerConstants.LOCALE;
  * @author Arsalan. Created on 16.05.2017.
  */
 @Controller
+@RequestMapping("/locale")
 public class LocaleController {
 
-    @RequestMapping(value = "/locale")
+    @RequestMapping(value = "/set")
     @ResponseBody
-    public void changeLocale(@RequestParam(name = "locale") String locale, HttpServletRequest request){
+    public void setLocale(@RequestParam(name = "locale") String locale, HttpServletRequest request){
         Locale result = new Locale(locale);
         HttpSession session = request.getSession();
         session.setAttribute(LOCALE, result);

@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface CartService {
 
-    boolean addToCart(long idProduct);
+    void addToCart(long idProduct);
 
     void removeFromCart(long product);
 

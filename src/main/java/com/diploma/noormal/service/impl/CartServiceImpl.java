@@ -31,15 +31,13 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public boolean addToCart(long idProduct) {
+    public void addToCart(long idProduct) {
         Product product = productService.findOne(idProduct);
-        if (product == null) {
-            return false;
+        if (product != null) {
+            int countOfProduct = getCountOfProductInCart(product);
+            Map<Product, Integer> productsInCart = cart.getProducts();
+            productsInCart.put(product, countOfProduct);
         }
-        int countOfProduct = getCountOfProductInCart(product);
-        Map<Product, Integer> productsInCart = cart.getProducts();
-        productsInCart.put(product, countOfProduct);
-        return true;
     }
 
     @Override
@@ -49,6 +47,7 @@ public class CartServiceImpl implements CartService {
             Product product = iterator.next();
             if (product.getId() == idProduct) {
                 iterator.remove();
+                break;
             }
         }
     }
@@ -65,6 +64,7 @@ public class CartServiceImpl implements CartService {
         for (Product product : productsInCart.keySet()) {
             if (product.getId() == idProduct) {
                 productsInCart.put(product, numberOfProducts);
+                break;
             }
         }
     }

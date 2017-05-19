@@ -26,6 +26,7 @@ import static com.diploma.noormal.util.Constants.ControllerConstants.PRODUCT_NOT
 import static com.diploma.noormal.util.Constants.ControllerConstants.SECOND_PRICE;
 import static com.diploma.noormal.util.Constants.ControllerConstants.SELECT_SHOW;
 import static com.diploma.noormal.util.Constants.ControllerConstants.SELECT_SORT;
+import static com.diploma.noormal.util.Constants.ControllerConstants.SINGLE;
 
 /**
  * @author Arsalan. Created on 14.04.2017.
@@ -65,7 +66,7 @@ public class ProductController {
         List<Comment> productsComments = commentService.findPublishedCommentsByProduct(product.getId());
         modelAndView.addObject(PRODUCT, product);
         modelAndView.addObject(COMMENT_LIST, productsComments);
-        modelAndView.setViewName("single");
+        modelAndView.setViewName(SINGLE);
         return modelAndView;
     }
 }

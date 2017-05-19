@@ -1,6 +1,5 @@
 package com.diploma.noormal.controller;
 
-import com.diploma.noormal.exception.ProductNotFoundException;
 import com.diploma.noormal.service.CartService;
 import com.diploma.noormal.util.JsonMaker;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,9 +15,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.diploma.noormal.util.Constants.ControllerConstants.AMOUNT;
+import static com.diploma.noormal.util.Constants.ControllerConstants.CART;
 import static com.diploma.noormal.util.Constants.ControllerConstants.CART_SERVICE_IMPL;
 import static com.diploma.noormal.util.Constants.ControllerConstants.ID_PRODUCT;
-import static com.diploma.noormal.util.Constants.ControllerConstants.PRODUCT_NOT_FOUND;
+import static com.diploma.noormal.util.Constants.ControllerConstants.MODAL;
 import static com.diploma.noormal.util.Constants.ControllerConstants.SIZE;
 import static com.diploma.noormal.util.Constants.ControllerConstants.VALUE;
 
@@ -26,8 +26,8 @@ import static com.diploma.noormal.util.Constants.ControllerConstants.VALUE;
  * @author Arsalan. Created on 22.04.2017.
  */
 @Controller
-@Scope("session")
 @RequestMapping("/cart")
+@Scope("session")
 public class CartController {
 
     private CartService cartService;
@@ -42,10 +42,7 @@ public class CartController {
     public String addToCart(HttpServletRequest request, @RequestParam(value = ID_PRODUCT) long idProduct) {
         HttpSession session = request.getSession();
         CartService cartService = (CartService) session.getAttribute(CART_SERVICE_IMPL);
-        boolean added = cartService.addToCart(idProduct);
-        if (!added) {
-            throw new ProductNotFoundException(PRODUCT_NOT_FOUND);
-        }
+        cartService.addToCart(idProduct);
         Map<String, Object> response = prepareResponse();
         return JsonMaker.make(response);
     }
@@ -58,7 +55,6 @@ public class CartController {
         HttpSession session = request.getSession();
         CartService cartService = (CartService) session.getAttribute(CART_SERVICE_IMPL);
         cartService.updateNumberOfProductInCart(idProduct, numberOfProducts);
-
         Map<String, Object> response = prepareResponse();
         return JsonMaker.make(response);
     }
@@ -75,7 +71,7 @@ public class CartController {
         Map<String, Object> response = new HashMap<String, Object>() {{
             put(AMOUNT, cartService.getAmount());
             put(SIZE, cartService.getNumberOfProductsInCart());
-            put("modal", "#cart");
+            put(MODAL, CART);
         }};
         return response;
     }

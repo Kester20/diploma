@@ -69,5 +69,4 @@ public class OrderController {
         modelAndView.setViewName(DONE_ORDER);
         return modelAndView;
     }
-
 }

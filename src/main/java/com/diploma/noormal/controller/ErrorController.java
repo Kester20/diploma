@@ -1,6 +1,5 @@
 package com.diploma.noormal.controller;
 
-import com.diploma.noormal.exception.ProductNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,8 +19,8 @@ import static com.diploma.noormal.util.Constants.ControllerConstants.URL;
 public class ErrorController {
 
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(ProductNotFoundException.class)
-    public ModelAndView handleProductNotFoundError(HttpServletRequest req, Exception ex) {
+    @ExceptionHandler(Exception.class)
+    public ModelAndView handleError(HttpServletRequest req, Exception ex) {
         ModelAndView mav = new ModelAndView();
         mav.addObject(EXCEPTION, ex);
         mav.addObject(URL, req.getRequestURL());

@@ -90,4 +90,28 @@ public class User {
     public void setWishList(List<Product> wishList) {
         this.wishList = wishList;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        User user = (User) o;
+
+        if (!id.equals(user.id)) return false;
+        if (!username.equals(user.username)) return false;
+        if (!password.equals(user.password)) return false;
+        if (!passwordConfirm.equals(user.passwordConfirm)) return false;
+        return email.equals(user.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id.hashCode();
+        result = 31 * result + username.hashCode();
+        result = 31 * result + password.hashCode();
+        result = 31 * result + passwordConfirm.hashCode();
+        result = 31 * result + email.hashCode();
+        return result;
+    }
 }
