@@ -25,5 +25,4 @@ public class LocaleController {
         HttpSession session = request.getSession();
         session.setAttribute(LOCALE, result);
     }
-
 }

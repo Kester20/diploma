@@ -13,7 +13,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @EnableTransactionManagement
-public class DataSourceConfuguration {
+public class DataSourceConfiguration {
 
     @Value("${spring.datasource.driver-class-name}")
     private String dataSourceClassName;
@@ -26,7 +26,6 @@ public class DataSourceConfuguration {
 
     @Value("${spring.datasource.password}")
     private String dataSourcePassword;
-
 
     @Bean
     public DataSource dataSource() {

@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecurityServiceImpl implements SecurityService {
 
+    private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
     private AuthenticationManager authenticationManager;
     private UserDetailsService userDetailsService;
 
@@ -25,8 +26,6 @@ public class SecurityServiceImpl implements SecurityService {
         this.authenticationManager = authenticationManager;
         this.userDetailsService = userDetailsService;
     }
-
-    private static final Logger logger = LoggerFactory.getLogger(SecurityServiceImpl.class);
 
     @Override
     public String findLoggedInUsername() {
@@ -40,7 +39,8 @@ public class SecurityServiceImpl implements SecurityService {
     @Override
     public void autoLogin(String username, String password) {
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
-        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+        UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken =
+                new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
 
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
 
